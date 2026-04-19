@@ -1,0 +1,92 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+// 判断当前路径激活哪个 Tab
+const isHome = currentPath === '/';
+const isCategory = currentPath.startsWith('/category/');
+const isAbout = currentPath === '/about';
+---
+
+<style>
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+</style>
+
+<nav
+  id="bottomNav"
+  class="fixed bottom-0 left-0 right-0 bg-white/95 backdrop-blur-sm border-t border-gray-200 z-50 lg:hidden safe-area-bottom"
+>
+  <div class="flex justify-around items-center h-14 max-w-6xl mx-auto">
+    <!-- 首页 -->
+    <a
+      href="/"
+      class:list={[
+        'flex flex-col items-center justify-center gap-0.5 px-4 py-1 transition-colors',
+        isHome ? 'text-brand-500' : 'text-gray-400 hover:text-brand-500'
+      ]}
+      aria-label="首页"
+    >
+      <span class="text-xl">🏠</span>
+      <span class="text-[10px] font-medium">首页</span>
+    </a>
+
+    <!-- 分类 -->
+    <a
+      href="/category/llm"
+      class:list={[
+        'flex flex-col items-center justify-center gap-0.5 px-4 py-1 transition-colors',
+        isCategory ? 'text-brand-500' : 'text-gray-400 hover:text-brand-500'
+      ]}
+      aria-label="分类"
+    >
+      <span class="text-xl">📂</span>
+      <span class="text-[10px] font-medium">分类</span>
+    </a>
+
+    <!-- 搜索 -->
+    <button
+      id="mobileSearchBtn"
+      class="flex flex-col items-center justify-center gap-0.5 px-4 py-1 text-gray-400 hover:text-brand-500 transition-colors"
+      aria-label="搜索"
+    >
+      <span class="text-xl">🔍</span>
+      <span class="text-[10px] font-medium">搜索</span>
+    </button>
+
+    <!-- 关于 -->
+    <a
+      href="/about"
+      class:list={[
+        'flex flex-col items-center justify-center gap-0.5 px-4 py-1 transition-colors',
+        isAbout ? 'text-brand-500' : 'text-gray-400 hover:text-brand-500'
+      ]}
+      aria-label="关于"
+    >
+      <span class="text-xl">ℹ️</span>
+      <span class="text-[10px] font-medium">关于</span>
+    </a>
+  </div>
+</nav>
+
+<script>
+  // 底部导航搜索按钮：聚焦首页搜索框
+  document.addEventListener('DOMContentLoaded', () => {
+    const btn = document.getElementById('mobileSearchBtn');
+    if (btn) {
+      btn.addEventListener('click', () => {
+        const searchInput = document.getElementById('searchInput') as HTMLInputElement | null;
+        if (searchInput) {
+          searchInput.focus();
+          searchInput.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        } else {
+          window.location.href = '/';
+        }
+      });
+    }
+  });
+</script>

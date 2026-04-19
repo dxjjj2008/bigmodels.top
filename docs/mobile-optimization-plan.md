@@ -145,7 +145,14 @@ html { scroll-behavior: smooth; }
 
 ---
 
-## 四、实施顺序
+## 四、实施状态
+
+- [x] 改动3：**底部 Tab 导航栏** ✅ 已实现
+  - 固定底部，4个 Tab：首页 / 分类 / 搜索 / 关于
+  - 当前页 Tab 高亮
+  - 搜索按钮聚焦首页搜索框
+  - iPhone刘海屏安全区域适配（`env(safe-area-inset-bottom)`）
+  - `lg:hidden` 桌面端自动隐藏
 
 1. **全局 Layout** — Header 紧凑化 + Viewport 配置
 2. **底部导航** — 移动端核心导航
