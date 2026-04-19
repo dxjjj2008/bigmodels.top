@@ -339,3 +339,122 @@ a1e522d feat: add ToolLogo component with Google Favicon API
 | 🐾 小欧（我） | 设计规范、内容填充、方案制定、文档维护 |
 | 🛠️ 小爱 | 代码实现、构建部署 |
 | 🎯 小滴 | 战略决策、审批（联盟账号、域名等） |
+
+---
+
+## 十四、技术选型
+
+**选择 Astro + Tailwind CSS 的原因：**
+- 开源（MIT license）
+- 默认输出纯静态 HTML，访问零服务器计算开销
+- island 架构，JS 按需加载，页面极快
+- Tailwind CSS 做样式定制，设计灵活
+
+**备选方案对比：**
+
+| 方案 | 优点 | 缺点 |
+|------|------|------|
+| Astro + Tailwind ✅ | 轻量、纯静态、Markdown 原生 | 需要一定前端知识 |
+| Hugo | 极快、主题多 | 模板定制复杂，Go 模板上手难 |
+| Jekyll | GitHub Pages 原生支持 | 构建慢，插件依赖多 |
+| Next.js 静态导出 | 生态丰富 | 偏重，不需要 SSR 时浪费 |
+
+**服务器与部署：**
+- VPS（andy.vps.ca）运行 Astro 构建的静态站点
+- Cloudflare R2 提供全球边缘节点加速
+- 架构：用户 → Cloudflare → R2 → 边缘分发（VPS 零流量）
+
+---
+
+## 十五、协作规范
+
+- **不确定的事，先问再执行**
+- 涉及具体解决方案、技术路线、实现方式等，需在群内提出，由小滴确认后再执行
+- 方案调整需在文档中标注（时间 + 人员 + 日期）
+- 小欧与小爱遇到需要确认的问题，及时在群里说明
+- 三方协同：小滴确认后 → 更新文档 → 再执行
+
+---
+
+## 十六、工具收录标准与模板
+
+**收录标准：**
+- 主流普通用户高频使用
+- 有官方网站（可验证）
+- 有 Affiliate 计划（优先）或可靠官方推荐链接
+- 能写出有价值的简短评测
+
+**内容模板（每个工具）：**
+```
+## 基本信息
+官网：https://xxx.com
+定价：免费 / 付费 / 免费+高级订阅
+分类：AI 图像生成
+
+## 工具简介
+（3-5句话介绍这是什么、解决什么问题）
+
+## 核心功能
+- 功能点1
+- 功能点2
+- 功能点3
+
+## 适用人群
+（2-3句话说明谁适合用）
+
+## 优缺点
+**优点：** ...
+**缺点：** ...
+
+## Affiliate 链接
+[立即使用 →](https://xxx.com?ref=bigmodels)
+（此为推广链接，我们可能会获得佣金）
+```
+
+---
+
+## 十七、KPI 指标
+
+| 指标 | 目标 |
+|------|------|
+| 月度独立访客（UV） | 第一个月 500+ |
+| Affiliate 转化 | 第一个月 5 单 |
+| 收录工具数 | MVP 阶段 40 个（已完成） |
+| Google 收录 | 上线后 2 周内完成 |
+| LCP 性能 | < 2.5s（纯静态，天然优势） |
+
+---
+
+## 十八、Phase 2 SEO 建设方案（待实施）
+
+### Step 1：SEO 基础设施（待小爱开发）
+- [ ] canonical URL — 每页添加 `<link rel="canonical">`
+- [ ] Twitter Card meta — `og:image` / `twitter:card`
+- [ ] 统一 OG 图片 — 生成品牌图 `/public/og-image.png`
+
+### Step 2：用户体验（待开发）
+- [ ] R2 404 页面配置 — 指向 `/404.html`
+- [ ] 全站 404 页面 — `src/pages/404.astro`（友好提示 + 搜索引导）
+- [ ] 统计工具 — 优先接入 Cloudflare Web Analytics（免费，零配置）
+
+### Step 3：SEO 验证（小欧执行）
+- [ ] Google Search Console 提交 sitemap
+- [ ] 验证各工具页 meta 是否正确
+- [ ] 检查 Google 是否正常抓取页面
+
+---
+
+## 十九、参考站点
+
+- https://theaisurf.com
+- https://alltheaitools.com
+- https://theres.an
+- https://aitoolsforme.com
+
+---
+
+## 二十、相关飞书文档
+
+- MVP 完整提案（原始版）：`J7bkddYqeoAiuqxmZqpceyXNnKe`
+- MVP 完整提案（含 R2 迁移 + Phase 2 SEO）：`XE3UdyIMcovUSlxDZhDcddvunyr`
+- 本地文档：`/var/www/bigmodels.top/docs/README.md`
