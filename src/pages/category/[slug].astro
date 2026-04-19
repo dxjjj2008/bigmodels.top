@@ -1,6 +1,7 @@
 ---
 import Layout from '../../layouts/Layout.astro';
 import { getToolsByCategory, getCategoryById, categories, tools } from '../../data/tools';
+import ToolLogo from '../../components/ToolLogo.astro';
 
 export function getStaticPaths() {
   return categories.map((category) => ({
@@ -86,13 +87,16 @@ const categoryTools = getToolsByCategory(category.id);
             href={`/tool/${tool.id}`}
             class="group bg-white rounded-xl p-5 border border-gray-200 hover:border-brand-500 hover:shadow-md transition-all"
           >
-            <div class="flex items-start justify-between mb-3">
-              <h3 class="font-bold text-lg text-gray-900 group-hover:text-brand-600 transition-colors">
-                {tool.name}
-              </h3>
-              <span class="flex items-center gap-1 text-sm font-medium text-amber-500">
-                ⭐ {tool.rating.toFixed(1)}
-              </span>
+            <div class="flex items-start gap-3 mb-3">
+              <ToolLogo name={tool.name} url={tool.url} size={36} />
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-lg text-gray-900 group-hover:text-brand-600 transition-colors">
+                  {tool.name}
+                </h3>
+                <span class="flex items-center gap-1 text-sm font-medium text-amber-500">
+                  ⭐ {tool.rating.toFixed(1)}
+                </span>
+              </div>
             </div>
             <p class="text-gray-600 text-sm line-clamp-2">{tool.description}</p>
             <div class="flex flex-wrap gap-1 mt-3">

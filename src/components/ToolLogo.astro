@@ -1,0 +1,90 @@
+---
+// 工具 Logo 组件
+// 策略：favicon > Clearbit > emoji fallback
+// favicon URL 格式: https://{domain}/favicon.ico 或 favicon.png
+
+interface Props {
+  name: string;
+  url: string;
+  size?: number;
+}
+
+const { name, url, size = 36 } = Astro.props;
+
+function getDomain(inputUrl: string): string {
+  try {
+    const u = new URL(inputUrl);
+    return u.hostname.replace(/^www\./, '');
+  } catch {
+    return '';
+  }
+}
+
+// 手动映射：emoji fallback（覆盖所有工具）
+const emojiMap: Record<string, string> = {
+  'ChatGPT': '🤖',
+  'Claude': '🧠',
+  'Gemini': '✨',
+  'DeepSeek': '🔮',
+  'Kimi': '🌙',
+  'Cursor': '💻',
+  'Windsurf': '🌊',
+  'GitHub Copilot': '⚡',
+  'Trae': '🏃',
+  'Devin': '🛠️',
+  'Midjourney': '🎨',
+  'DALL-E': '🖼️',
+  'Stable Diffusion': '🎨',
+  'Flux': '⚡',
+  'Recraft': '✒️',
+  'Sora': '🎬',
+  'Runway': '✈️',
+  'Pika': '🎬',
+  '可灵': '🎥',
+  'Haiper': '🔮',
+  'ElevenLabs': '🎙️',
+  'Suno': '🎵',
+  'Udio': '🎶',
+  'Whisper': '🎧',
+  'Murf AI': '🎤',
+  'Perplexity': '🔍',
+  'Arc Search': '🌐',
+  '纳米搜索': '🔬',
+  'Devv AI': '💎',
+  'Tavily': '📡',
+  'Notion AI': '📝',
+  'Gamma': '📊',
+  '博思白板': '🧩',
+  '夸克': '⚛️',
+  '通义千问': '🐘',
+  '文心一言': '📖',
+  'Grammarly': '✅',
+  'Beautiful.ai': '🎀',
+  'Canva AI': '🖌️',
+  'Leonardo.ai': '🦁',
+};
+
+const domain = getDomain(url);
+const emoji = emojiMap[name] || '🔧';
+---
+
+<span
+  class="tool-logo-wrap"
+  style={`display:inline-flex;align-items:center;justify-content:center;width:${size}px;height:${size}px;border-radius:10px;background:linear-gradient(135deg,#6366F1,#8B5CF6);flex-shrink:0;`}
+>
+  <img
+    src={`https://www.google.com/s2/favicons?domain=${domain}&sz=${size * 2}`}
+    alt={`${name}`}
+    width={size}
+    height={size}
+    loading="lazy"
+    style={`width:${size}px;height:${size}px;object-fit:contain;border-radius:6px;`}
+    onerror={`this.style.display='none';this.nextElementSibling.style.display='flex';`}
+  />
+  <span
+    class="emoji-fallback"
+    style={`display:none;align-items:center;justify-content:center;font-size:${Math.floor(size * 0.55)}px;line-height:1;`}
+  >
+    {emoji}
+  </span>
+</span>

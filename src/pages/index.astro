@@ -1,6 +1,7 @@
 ---
 import Layout from '../layouts/Layout.astro';
 import { categories, tools } from '../data/tools';
+import ToolLogo from '../components/ToolLogo.astro';
 
 const toolCount = tools.length;
 const categoryCount = categories.length;
@@ -77,13 +78,16 @@ const categoryCount = categories.length;
           data-category={tool.category}
           class="tool-card group bg-white rounded-xl p-5 border border-gray-200 hover:border-brand-500 hover:shadow-md transition-all"
         >
-          <div class="flex items-start justify-between mb-3">
-            <h3 class="font-bold text-lg text-gray-900 group-hover:text-brand-600 transition-colors">
-              {tool.name}
-            </h3>
-            <span class="flex items-center gap-1 text-sm font-medium text-amber-500">
-              ⭐ {tool.rating.toFixed(1)}
-            </span>
+          <div class="flex items-start gap-3 mb-3">
+            <ToolLogo name={tool.name} url={tool.url} size={36} />
+            <div class="flex-1 min-w-0">
+              <h3 class="font-bold text-lg text-gray-900 group-hover:text-brand-600 transition-colors">
+                {tool.name}
+              </h3>
+              <span class="flex items-center gap-1 text-sm font-medium text-amber-500">
+                ⭐ {tool.rating.toFixed(1)}
+              </span>
+            </div>
           </div>
           <p class="text-gray-600 text-sm line-clamp-2">{tool.description}</p>
           <div class="flex items-center gap-2 mt-3">
@@ -111,13 +115,16 @@ const categoryCount = categories.length;
             data-category={tool.category}
             class="tool-card group bg-white rounded-xl p-5 border border-gray-200 hover:border-brand-500 hover:shadow-md transition-all"
           >
-            <div class="flex items-start justify-between mb-3">
-              <h3 class="font-bold text-lg text-gray-900 group-hover:text-brand-600 transition-colors">
-                {tool.name}
-              </h3>
-              <span class="flex items-center gap-1 text-sm font-medium text-amber-500">
-                ⭐ {tool.rating.toFixed(1)}
-              </span>
+            <div class="flex items-start gap-3 mb-3">
+              <ToolLogo name={tool.name} url={tool.url} size={36} />
+              <div class="flex-1 min-w-0">
+                <h3 class="font-bold text-lg text-gray-900 group-hover:text-brand-600 transition-colors">
+                  {tool.name}
+                </h3>
+                <span class="flex items-center gap-1 text-sm font-medium text-amber-500">
+                  ⭐ {tool.rating.toFixed(1)}
+                </span>
+              </div>
             </div>
             <p class="text-gray-600 text-sm line-clamp-2">{tool.description}</p>
             <div class="flex items-center gap-2 mt-3">
