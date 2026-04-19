@@ -1,15 +1,23 @@
 #!/bin/bash
 # Deploy bigmodels.top to Cloudflare R2
+# 配置通过 .env 文件管理，不在脚本中硬编码密钥
 set -e
 
-# R2 配置
-export AWS_ACCESS_KEY_ID="f479d097bb98367d7b253f3cf70d2dc3"
-export AWS_SECRET_ACCESS_KEY="111576f0ef0381313f92ca0960aa52d6e2f3f5863a2b77662cb9d510afed71ef"
-export AWS_DEFAULT_REGION="auto"
-export AWS_ENDPOINT_URL="https://c4d08c0c61dc09383f35e0fd3eb946b4.r2.cloudflarestorage.com"
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+ENV_FILE="$SCRIPT_DIR/.env"
 
-R2_BUCKET="bucket01"
-DIST_DIR="/var/www/bigmodels.top/dist"
+# 读取 .env 文件
+if [ -f "$ENV_FILE" ]; then
+  set -a
+  source "$ENV_FILE"
+  set +a
+else
+  echo "❌ 错误：未找到 .env 配置文件"
+  echo "请复制 .env.example 为 .env 并填入实际值"
+  exit 1
+fi
+
+DIST_DIR="$SCRIPT_DIR/dist"
 
 echo "=== 开始部署 bigmodels.top 到 R2 ==="
 echo "Bucket: $R2_BUCKET"
