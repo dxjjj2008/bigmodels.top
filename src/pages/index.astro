@@ -1,0 +1,187 @@
+---
+import Layout from '../layouts/Layout.astro';
+import { categories, tools } from '../data/tools';
+
+const toolCount = tools.length;
+const categoryCount = categories.length;
+---
+
+<Layout title="BigModels.top - AI 工具导航站">
+  <!-- Hero Section -->
+  <section class="text-center py-16">
+    <h1 class="text-5xl font-bold text-gray-900 mb-4">
+      🧠 BigModels.top
+    </h1>
+    <p class="text-xl text-gray-600 mb-8 max-w-2xl mx-auto">
+      发现并探索最优秀的 AI 工具，一站式导航平台
+    </p>
+
+    <!-- 搜索框 -->
+    <div class="max-w-xl mx-auto mb-8 relative">
+      <input
+        type="text"
+        id="searchInput"
+        placeholder="搜索 AI 工具..."
+        class="w-full px-5 py-3 pl-12 text-lg rounded-xl border border-gray-200 bg-white shadow-sm focus:outline-none focus:ring-2 focus:ring-brand-400 focus:border-brand-400 transition-all"
+      />
+      <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl">🔍</span>
+      <!-- 搜索结果下拉 -->
+      <div id="searchResults" class="absolute top-full left-0 right-0 mt-2 bg-white rounded-xl border border-gray-200 shadow-lg overflow-hidden hidden z-50 max-h-80 overflow-y-auto">
+      </div>
+    </div>
+
+    <div class="flex items-center justify-center gap-4 text-gray-500">
+      <span class="bg-brand-100 text-brand-600 px-4 py-1 rounded-full text-sm font-medium">
+        {toolCount} 个工具
+      </span>
+      <span class="bg-green-100 text-green-700 px-4 py-1 rounded-full text-sm font-medium">
+        {categoryCount} 个分类
+      </span>
+    </div>
+  </section>
+
+  <!-- 分类导航 -->
+  <section class="mb-12">
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">📂 按分类浏览</h2>
+    <div class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-8 gap-3">
+      {categories.map((category) => {
+        const count = tools.filter(t => t.category === category.id).length;
+        return (
+          <a
+            href={`/category/${category.id}`}
+            class="group bg-white rounded-xl p-3 border border-gray-200 hover:border-brand-500 hover:shadow-md transition-all text-center"
+          >
+            <div class="text-3xl mb-1">
+              {category.icon}
+            </div>
+            <h3 class="font-semibold text-gray-900 group-hover:text-brand-600 transition-colors text-sm">
+              {category.name}
+            </h3>
+            <p class="text-xs text-gray-500">{count} 个</p>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- 热门工具 -->
+  <section>
+    <h2 class="text-2xl font-bold text-gray-900 mb-6">🔥 热门工具</h2>
+    <div id="featuredTools" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+      {tools.slice(0, 8).map((tool) => (
+        <a
+          href={`/tool/${tool.id}`}
+          data-name={tool.name}
+          data-desc={tool.description}
+          data-tags={tool.tags.join(',')}
+          data-category={tool.category}
+          class="tool-card group bg-white rounded-xl p-5 border border-gray-200 hover:border-brand-500 hover:shadow-md transition-all"
+        >
+          <div class="flex items-start justify-between mb-3">
+            <h3 class="font-bold text-lg text-gray-900 group-hover:text-brand-600 transition-colors">
+              {tool.name}
+            </h3>
+            <span class="flex items-center gap-1 text-sm font-medium text-amber-500">
+              ⭐ {tool.rating.toFixed(1)}
+            </span>
+          </div>
+          <p class="text-gray-600 text-sm line-clamp-2">{tool.description}</p>
+          <div class="flex items-center gap-2 mt-3">
+            <span class="text-xs bg-brand-100 text-brand-600 px-2 py-0.5 rounded">
+              {categories.find(c => c.id === tool.category)?.name}
+            </span>
+            {tool.tags.slice(0, 2).map((tag) => (
+              <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">{tag}</span>
+            ))}
+          </div>
+        </a>
+      ))}
+    </div>
+
+    <!-- 全部工具 -->
+    <div class="mt-8">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">📋 全部工具</h2>
+      <div id="allTools" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+        {tools.map((tool) => (
+          <a
+            href={`/tool/${tool.id}`}
+            data-name={tool.name}
+            data-desc={tool.description}
+            data-tags={tool.tags.join(',')}
+            data-category={tool.category}
+            class="tool-card group bg-white rounded-xl p-5 border border-gray-200 hover:border-brand-500 hover:shadow-md transition-all"
+          >
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-bold text-lg text-gray-900 group-hover:text-brand-600 transition-colors">
+                {tool.name}
+              </h3>
+              <span class="flex items-center gap-1 text-sm font-medium text-amber-500">
+                ⭐ {tool.rating.toFixed(1)}
+              </span>
+            </div>
+            <p class="text-gray-600 text-sm line-clamp-2">{tool.description}</p>
+            <div class="flex items-center gap-2 mt-3">
+              <span class="text-xs bg-brand-100 text-brand-600 px-2 py-0.5 rounded">
+                {categories.find(c => c.id === tool.category)?.name}
+              </span>
+              {tool.tags.slice(0, 2).map((tag) => (
+                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">{tag}</span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</Layout>
+
+<script>
+  // 搜索功能
+  const searchInput = document.getElementById('searchInput') as HTMLInputElement;
+  const searchResults = document.getElementById('searchResults');
+  const allToolCards = document.querySelectorAll<HTMLElement>('.tool-card');
+
+  // 所有工具数据
+  const toolsData = Array.from(allToolCards).map(card => ({
+    name: card.dataset.name || '',
+    desc: card.dataset.desc || '',
+    tags: card.dataset.tags || '',
+    category: card.dataset.category || '',
+    href: card.getAttribute('href') || '',
+  }));
+
+  searchInput?.addEventListener('input', (e) => {
+    const query = (e.target as HTMLInputElement).value.trim().toLowerCase();
+
+    if (!query) {
+      searchResults!.classList.add('hidden');
+      return;
+    }
+
+    const matched = toolsData.filter(t =>
+      t.name.toLowerCase().includes(query) ||
+      t.desc.toLowerCase().includes(query) ||
+      t.tags.toLowerCase().includes(query)
+    );
+
+    if (matched.length === 0) {
+      searchResults!.innerHTML = '<div class="px-4 py-3 text-gray-500 text-sm">未找到匹配的工具</div>';
+    } else {
+      searchResults!.innerHTML = matched.slice(0, 8).map(t => `
+        <a href="${t.href}" class="flex items-center gap-3 px-4 py-3 hover:bg-brand-50 transition-colors border-b border-gray-100 last:border-0">
+          <span class="font-medium text-gray-900 text-sm">${t.name}</span>
+          <span class="text-xs text-gray-500 truncate flex-1">${t.desc.slice(0, 50)}...</span>
+        </a>
+      `).join('');
+    }
+
+    searchResults!.classList.remove('hidden');
+  });
+
+  // 点击其他地方关闭搜索结果
+  document.addEventListener('click', (e) => {
+    if (!searchInput?.contains(e.target as Node) && !searchResults?.contains(e.target as Node)) {
+      searchResults?.classList.add('hidden');
+    }
+  });
+</script>
