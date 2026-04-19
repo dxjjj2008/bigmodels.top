@@ -1,0 +1,24 @@
+/* 字体：jsDelivr CDN（版本锁定，国内可访问）*/
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.0/400.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.0/500.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.0/600.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/inter@5.0.0/700.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5.0.0/chinese-simplified-400.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5.0.0/chinese-simplified-500.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5.0.0/chinese-simplified-600.css');
+@import url('https://cdn.jsdelivr.net/npm/@fontsource/noto-sans-sc@5.0.0/chinese-simplified-700.css');
+@import "tailwindcss";
+
+@theme {
+  --color-brand-50: #EEF2FF;
+  --color-brand-100: #E0E7FF;
+  --color-brand-400: #818CF8;
+  --color-brand-500: #6366F1;
+  --color-brand-600: #4F46E5;
+  --color-brand-700: #4338CA;
+  --color-accent-500: #8B5CF6;
+}
+
+body {
+  font-family: 'Inter', 'Noto Sans SC', sans-serif;
+}

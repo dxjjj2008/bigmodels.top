@@ -1,0 +1,108 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getToolsByCategory, getCategoryById, categories, tools } from '../../data/tools';
+
+export function getStaticPaths() {
+  return categories.map((category) => ({
+    params: { slug: category.id },
+    props: { category },
+  }));
+}
+
+const { category } = Astro.props;
+const categoryTools = getToolsByCategory(category.id);
+---
+
+<Layout title={`${category.name} - BigModels.top`} description={category.description}>
+  <div class="flex gap-8">
+    <!-- 侧边栏 -->
+    <aside class="hidden lg:block w-48 shrink-0">
+      <div class="sticky top-8">
+        <h3 class="text-sm font-semibold text-gray-500 uppercase tracking-wider mb-3">分类</h3>
+        <nav class="space-y-1">
+          {categories.map((cat) => {
+            const count = tools.filter(t => t.category === cat.id).length;
+            const isActive = cat.id === category.id;
+            return (
+              <a
+                href={`/category/${cat.id}`}
+                class={`flex items-center gap-2 px-3 py-2 rounded-lg text-sm transition-all ${
+                  isActive
+                    ? 'bg-brand-500 text-white font-medium shadow-sm'
+                    : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                }`}
+              >
+                <span class="text-base">{cat.icon}</span>
+                <span class="flex-1">{cat.name}</span>
+                <span class={`text-xs ${isActive ? 'text-brand-200' : 'text-gray-400'}`}>{count}</span>
+              </a>
+            );
+          })}
+        </nav>
+      </div>
+    </aside>
+
+    <!-- 主内容 -->
+    <div class="flex-1 min-w-0">
+      <div class="mb-8">
+        <a href="/" class="text-brand-500 hover:text-brand-600 flex items-center gap-1 mb-4 text-sm font-medium">
+          ← 返回首页
+        </a>
+        <div class="flex items-center gap-3 mb-2">
+          <span class="text-4xl">{category.icon}</span>
+          <h1 class="text-3xl font-bold text-gray-900">{category.name}</h1>
+        </div>
+        <p class="text-gray-600 text-lg">{category.description}</p>
+        <p class="text-gray-500 text-sm mt-2">共 {categoryTools.length} 个工具</p>
+      </div>
+
+      <!-- 移动端分类切换 -->
+      <div class="lg:hidden mb-6 overflow-x-auto">
+        <div class="flex gap-2 pb-2">
+          {categories.map((cat) => {
+            const count = tools.filter(t => t.category === cat.id).length;
+            const isActive = cat.id === category.id;
+            return (
+              <a
+                href={`/category/${cat.id}`}
+                class={`flex items-center gap-1 px-3 py-1.5 rounded-full text-sm whitespace-nowrap transition-all ${
+                  isActive
+                    ? 'bg-brand-500 text-white'
+                    : 'bg-white border border-gray-200 text-gray-600'
+                }`}
+              >
+                <span>{cat.icon}</span>
+                <span>{cat.name}</span>
+                <span class="text-xs opacity-70">{count}</span>
+              </a>
+            );
+          })}
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+        {categoryTools.map((tool) => (
+          <a
+            href={`/tool/${tool.id}`}
+            class="group bg-white rounded-xl p-5 border border-gray-200 hover:border-brand-500 hover:shadow-md transition-all"
+          >
+            <div class="flex items-start justify-between mb-3">
+              <h3 class="font-bold text-lg text-gray-900 group-hover:text-brand-600 transition-colors">
+                {tool.name}
+              </h3>
+              <span class="flex items-center gap-1 text-sm font-medium text-amber-500">
+                ⭐ {tool.rating.toFixed(1)}
+              </span>
+            </div>
+            <p class="text-gray-600 text-sm line-clamp-2">{tool.description}</p>
+            <div class="flex flex-wrap gap-1 mt-3">
+              {tool.tags.map((tag) => (
+                <span class="text-xs bg-gray-100 text-gray-600 px-2 py-0.5 rounded">{tag}</span>
+              ))}
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>

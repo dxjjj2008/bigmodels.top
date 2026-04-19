@@ -1,0 +1,165 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getToolById, getCategoryById, tools, categories } from '../../data/tools';
+import { seoMeta } from '../../data/seo-meta';
+
+export function getStaticPaths() {
+  return tools.map((tool) => ({
+    params: { slug: tool.id },
+    props: { tool },
+  }));
+}
+
+const { tool } = Astro.props;
+const category = getCategoryById(tool.category);
+
+// 定价 badge 样式
+const pricingMap: Record<string, string> = {
+  '免费': 'bg-green-100 text-green-700',
+  '付费': 'bg-red-100 text-red-700',
+  '免费+订阅': 'bg-amber-100 text-amber-700',
+  '订阅': 'bg-orange-100 text-orange-700',
+};
+const pricingClass = pricingMap[tool.pricing] || 'bg-gray-100 text-gray-700';
+---
+
+<Layout title={seoMeta[tool.id]?.title ?? `${tool.name} - BigModels.top`} description={seoMeta[tool.id]?.description ?? tool.description}>
+  <div class="max-w-4xl mx-auto">
+    <a href={`/category/${tool.category}`} class="text-brand-500 hover:text-brand-600 flex items-center gap-1 mb-6 text-sm font-medium">
+      ← 返回 {category?.name}
+    </a>
+
+    <!-- 顶部卡片 -->
+    <div class="bg-white rounded-2xl border border-gray-200 p-8 mb-6">
+      <!-- 标题区 -->
+      <div class="flex items-start justify-between mb-6">
+        <div>
+          <h1 class="text-4xl font-bold text-gray-900 mb-3">{tool.name}</h1>
+          <div class="flex flex-wrap items-center gap-2">
+            <span class="bg-brand-100 text-brand-600 px-3 py-1 rounded-full text-sm font-medium">
+              {category?.icon} {category?.name}
+            </span>
+            <span class={`px-3 py-1 rounded-full text-sm font-medium ${pricingClass}`}>
+              {tool.pricing}
+            </span>
+            <span class="flex items-center gap-1 text-amber-500 font-semibold">
+              ⭐ {tool.rating.toFixed(1)} / 5
+            </span>
+            {tool.tags.map((tag) => (
+              <span class="bg-gray-100 text-gray-600 px-2 py-1 rounded text-sm">{tag}</span>
+            ))}
+          </div>
+        </div>
+      </div>
+
+      <!-- 顶部 Affiliate 按钮 -->
+      {tool.affiliateUrl && (
+        <div class="mb-6">
+          <a
+            href={tool.affiliateUrl}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 bg-brand-500 hover:bg-brand-600 text-white px-8 py-4 rounded-xl font-bold text-lg transition-colors shadow-md"
+          >
+            🚀 立即使用 {tool.name} →
+          </a>
+          <p class="text-xs text-gray-400 mt-1">此为推广链接，我们可能会获得佣金</p>
+        </div>
+      )}
+
+      <p class="text-lg text-gray-700 leading-relaxed">{tool.description}</p>
+    </div>
+
+    <!-- 核心功能 -->
+    <div class="bg-white rounded-2xl border border-gray-200 p-8 mb-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-2">
+        ⚡ 核心功能
+      </h2>
+      <ul class="space-y-3">
+        {tool.features.map((feature, i) => (
+          <li class="flex items-start gap-3">
+            <span class="flex items-center justify-center w-7 h-7 rounded-full bg-brand-100 text-brand-600 font-bold text-sm shrink-0 mt-0.5">
+              {i + 1}
+            </span>
+            <span class="text-gray-700">{feature}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <!-- 优缺点 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+      <!-- 优点 -->
+      <div class="bg-white rounded-2xl border border-gray-200 p-8">
+        <h2 class="text-xl font-bold text-green-700 mb-5 flex items-center gap-2">
+          ✅ 优点
+        </h2>
+        <ul class="space-y-3">
+          {tool.pros.map((pro) => (
+            <li class="flex items-start gap-2">
+              <span class="text-green-500 mt-0.5">✓</span>
+              <span class="text-gray-700 text-sm">{pro}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+      <!-- 缺点 -->
+      <div class="bg-white rounded-2xl border border-gray-200 p-8">
+        <h2 class="text-xl font-bold text-red-700 mb-5 flex items-center gap-2">
+          ⚠️ 缺点
+        </h2>
+        <ul class="space-y-3">
+          {tool.cons.map((con) => (
+            <li class="flex items-start gap-2">
+              <span class="text-red-400 mt-0.5">×</span>
+              <span class="text-gray-700 text-sm">{con}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    </div>
+
+    <!-- 适用人群 -->
+    <div class="bg-white rounded-2xl border border-gray-200 p-8 mb-6">
+      <h2 class="text-2xl font-bold text-gray-900 mb-4">👥 适用人群</h2>
+      <p class="text-gray-700 text-lg">{tool.targetAudience}</p>
+    </div>
+
+    <!-- 底部 Affiliate 按钮 -->
+    {tool.affiliateUrl && (
+      <div class="bg-gradient-to-r from-brand-500 to-accent-500 rounded-2xl p-8 text-center mb-6">
+        <a
+          href={tool.affiliateUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="inline-flex items-center gap-3 bg-white hover:bg-gray-50 text-brand-600 px-10 py-5 rounded-xl font-bold text-xl transition-colors shadow-lg"
+        >
+          🚀 立即使用 {tool.name} →
+        </a>
+        <p class="text-white/80 text-sm mt-3">此为推广链接，我们可能会获得佣金，不影响您的购买价格</p>
+      </div>
+    )}
+
+    <!-- 相关推荐 -->
+    <div>
+      <h2 class="text-2xl font-bold text-gray-900 mb-6">🔗 相关推荐</h2>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+        {tools.filter(t => t.category === tool.category && t.id !== tool.id).slice(0, 4).map((relatedTool) => (
+          <a
+            href={`/tool/${relatedTool.id}`}
+            class="group bg-white rounded-xl p-4 border border-gray-200 hover:border-brand-500 hover:shadow-md transition-all"
+          >
+            <div class="flex items-start justify-between mb-2">
+              <h3 class="font-bold text-gray-900 group-hover:text-brand-600 transition-colors">
+                {relatedTool.name}
+              </h3>
+              <span class="text-amber-500 text-sm font-medium">⭐ {relatedTool.rating.toFixed(1)}</span>
+            </div>
+            <p class="text-gray-600 text-sm line-clamp-2">{relatedTool.description}</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </div>
+</Layout>
