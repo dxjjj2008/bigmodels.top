@@ -52,7 +52,6 @@ export const tools: Tool[] = [
     tags: ['对话', '推理', '写作'],
     rating: 4.5,
     commissionRate: 0.10,
-    commissionRate: 0.10,
     pricing: '免费+订阅',
     features: [
       '多轮连续对话，支持上下文记忆',
@@ -110,7 +109,7 @@ export const tools: Tool[] = [
   {
     id: 'gemini',
     name: 'Gemini',
-    description: 'Gemini 是 Google DeepMind 开发的多模态 AI，支持文本、图像、音频、视频的跨模态理解和生成。集成在 Google 生态中，可通过 Google App 直接使用，支持文件分析、实时搜索等功能。',
+    description: 'Gemini 是 Google DeepMind 开发的多模态 AI，支持文本、图像、音频、视频的跨模态理解和生成。集成 Google 生态，通过 Google App 直接使用或 API 接入。适合需要实时搜索、文件分析、跨模态内容的用户，国内可直接访问（部分高级功能需魔法）。',
     category: 'llm',
     url: 'https://gemini.google.com',
     tags: ['多模态', '搜索', 'Google'],
@@ -173,7 +172,7 @@ export const tools: Tool[] = [
   {
     id: 'kimi',
     name: 'Kimi',
-    description: 'Kimi 是月之暗面（Moonshot AI）推出的国产大模型产品，主打超长上下文处理能力（支持 20 万字长文本），在中文对话、法律文档分析、论文阅读等场景表现出色，交互界面简洁流畅。',
+    description: 'Kimi 是月之暗面（Moonshot AI）推出的国产大模型产品，最大亮点是支持 20 万字超长上下文，可一次性处理整本长书或上百份文档，在中文对话、法律文档分析、论文阅读等场景表现出色。交互界面简洁流畅，无需魔法即可访问，对需要处理大量文本的用户（法务、学术研究者、内容创作者）非常友好。',
     category: 'llm',
     url: 'https://kimi.moonshot.cn',
     tags: ['长文本', '国产', '中文'],
@@ -496,7 +495,7 @@ export const tools: Tool[] = [
   {
     id: 'recraft',
     name: 'Recraft',
-    description: 'Recraft 是一款专注于矢量图像和品牌设计的 AI 工具，可以生成风格一致的系列图像，支持矢量导出（SVG）和位图。非常适合需要统一视觉风格的品牌方、设计师使用。',
+    description: 'Recraft 是一款专注于矢量图像和品牌设计的 AI 工具，可以生成风格一致的系列图像，并支持矢量格式导出（SVG）。对于需要统一视觉风格的品牌方、设计师来说非常实用——Logo、图标、品牌插画都能保持视觉一致性。提供免费额度，订阅版解锁更多生成次数，适合设计团队和品牌运营者使用。',
     category: 'image',
     url: 'https://www.recraft.ai',
     tags: ['设计', '矢量', '品牌'],
@@ -1133,7 +1132,7 @@ export const tools: Tool[] = [
   {
     id: 'tongyi',
     name: '通义千问',
-    description: '通义千问是阿里云推出的大语言模型，深度集成阿里云生态，支持对话、写作、编程、翻译等多种任务。作为国产大模型，对中文场景优化较好，可通过网页和 API 使用。',
+    description: '通义千问是阿里云自研的大语言模型，深度集成阿里云生态，支持对话、写作、编程、翻译、PPT生成等多种任务。作为国产头部大模型，对中文语境理解深入，交互流畅，适合阿里云用户和国内企业办公场景。免费使用，API 按量付费。',
     category: 'docs',
     url: 'https://tongyi.aliyun.com',
     tags: ['国产', '大模型', '阿里云'],
@@ -1164,7 +1163,7 @@ export const tools: Tool[] = [
   {
     id: 'ernie',
     name: '文心一言',
-    description: '文心一言是百度推出的国产大模型对话产品，对中文理解和创作有深度优化，支持文学创作、商业文案、代码生成等多种任务。与百度搜索深度整合，实时信息获取能力强。',
+    description: '文心一言是百度自研的国产大模型对话产品，基于文心大模型构建，对中文理解和文学创作有深度优化。支持小说续写、商业文案、代码生成、逻辑推理等多种任务，与百度搜索深度联动可实时获取网络信息，适合中文创作者和国内办公人群。',
     category: 'docs',
     url: 'https://yiyan.baidu.com',
     tags: ['国产', '大模型', '百度'],
