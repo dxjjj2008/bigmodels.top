@@ -40,6 +40,33 @@ const categoryCount = categories.length;
     </div>
   </section>
 
+  <!-- MiniMax Token Plan 推广横幅 -->
+  <section class="mb-8 max-w-6xl mx-auto">
+    <a
+      href="https://platform.minimaxi.com/subscribe/token-plan?code=INTFeFx6kr&source=link"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="block bg-gradient-to-r from-[#6366F1] to-[#8B5CF6] rounded-2xl p-5 text-white shadow-lg hover:shadow-xl hover:scale-[1.01] transition-all relative overflow-hidden"
+    >
+      <div class="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2"></div>
+      <div class="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full translate-y-1/2 -translate-x-1/2"></div>
+      <div class="relative z-10">
+        <div class="flex items-center gap-2 mb-2">
+          <span class="text-2xl">🚀</span>
+          <span class="font-bold text-lg">MiniMax Token Plan 惊喜上线！</span>
+        </div>
+        <p class="text-white/90 text-sm mb-3 leading-relaxed">
+          新增语音、音乐、视频和图片生成权益。邀请好友享双重好礼，助力开发体验！<br/>
+          好友立享 <strong>9折 专属优惠</strong> + Builder 权益，你赢返利 + 社区特权！
+        </p>
+        <div class="inline-flex items-center gap-2 bg-white/20 hover:bg-white/30 px-4 py-2 rounded-full text-sm font-medium transition-colors">
+          <span>👉 立即参与</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/></svg>
+        </div>
+      </div>
+    </a>
+  </section>
+
   <!-- 分类导航 -->
   <section class="mb-12">
     <h2 class="text-2xl font-bold text-gray-900 mb-6">📂 按分类浏览</h2>
@@ -68,7 +95,7 @@ const categoryCount = categories.length;
   <section>
     <h2 class="text-2xl font-bold text-gray-900 mb-6">🔥 热门工具</h2>
     <div id="featuredTools" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-      {tools.slice(0, 8).map((tool) => (
+      {[...tools].sort((a, b) => b.commissionRate * b.rating - a.commissionRate * a.rating).slice(0, 8).map((tool) => (
         <a
           href={`/tool/${tool.id}`}
           data-name={tool.name}

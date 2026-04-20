@@ -23,7 +23,7 @@ const pricingMap: Record<string, string> = {
 const pricingClass = pricingMap[tool.pricing] || 'bg-gray-100 text-gray-700';
 ---
 
-<Layout title={seoMeta[tool.id]?.title ?? `${tool.name} - BigModels.top`} description={seoMeta[tool.id]?.description ?? tool.description}>
+<Layout title={seoMeta[tool.id]?.title ?? `${tool.name} - BigModels.top`} description={seoMeta[tool.id]?.description ?? tool.description} keywords={`${tool.name},${tool.tags.join(',')},AI工具,${category?.name}`}>
   <div class="max-w-4xl mx-auto">
     <a href={`/category/${tool.category}`} class="text-brand-500 hover:text-brand-600 flex items-center gap-1 mb-6 text-sm font-medium">
       ← 返回 {category?.name}

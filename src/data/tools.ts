@@ -11,6 +11,7 @@ export interface Tool {
   tags: string[];
   rating: number;        // 0-5，支持半星，如 4.5
   pricing: string;       // 免费 / 付费 / 免费+订阅
+  commissionRate: number; // 佣金率，0.0-1.0（如 0.1 表示 10%），用于热门工具排序
   features: string[];    // 核心功能，3-5条
   pros: string[];        // 优点，2-4条
   cons: string[];        // 缺点，2-4条
@@ -50,6 +51,8 @@ export const tools: Tool[] = [
     url: 'https://chat.openai.com',
     tags: ['对话', '推理', '写作'],
     rating: 4.5,
+    commissionRate: 0.10,
+    commissionRate: 0.10,
     pricing: '免费+订阅',
     features: [
       '多轮连续对话，支持上下文记忆',
@@ -80,6 +83,7 @@ export const tools: Tool[] = [
     url: 'https://claude.ai',
     tags: ['编程', '分析', '长文本'],
     rating: 4.5,
+    commissionRate: 0.10,
     pricing: '免费+订阅',
     features: [
       '支持 200K token 超长上下文，可分析整本书籍或代码库',
@@ -111,6 +115,7 @@ export const tools: Tool[] = [
     url: 'https://gemini.google.com',
     tags: ['多模态', '搜索', 'Google'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '免费',
     features: [
       '原生多模态：文本、图像、音视频统一理解',
@@ -141,6 +146,7 @@ export const tools: Tool[] = [
     url: 'https://www.deepseek.com',
     tags: ['开源', '推理', '国产'],
     rating: 4.5,
+    commissionRate: 0.10,
     pricing: '免费+订阅',
     features: [
       'DeepSeek-V3 / R1 系列开源模型，性能对标 GPT-4',
@@ -172,6 +178,7 @@ export const tools: Tool[] = [
     url: 'https://kimi.moonshot.cn',
     tags: ['长文本', '国产', '中文'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '免费',
     features: [
       '支持 20 万字超长上下文，可处理整本长书',
@@ -207,6 +214,7 @@ export const tools: Tool[] = [
     url: 'https://cursor.sh',
     tags: ['IDE', '编程', 'AI补全'],
     rating: 4.5,
+    commissionRate: 0.10,
     pricing: '免费+订阅',
     features: [
       '内置多个顶级模型（GPT-4o、Claude 3.5 Sonnet）',
@@ -238,6 +246,7 @@ export const tools: Tool[] = [
     url: 'https://codeium.com/windsurf',
     tags: ['IDE', '编程', 'Agent'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '免费+订阅',
     features: [
       'Agent 模式：AI 自主分解任务并逐步执行',
@@ -268,6 +277,7 @@ export const tools: Tool[] = [
     url: 'https://github.com/features/copilot',
     tags: ['补全', 'GitHub', '微软'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '订阅',
     features: [
       'IDE 深度集成：VS Code、JetBrains、Neovim 等',
@@ -298,6 +308,7 @@ export const tools: Tool[] = [
     url: 'https://www.trae.ai',
     tags: ['国产', 'IDE', '免费'],
     rating: 3.5,
+    commissionRate: 0.05,
     pricing: '免费',
     features: [
       '全中文界面，国内开发者友好',
@@ -328,6 +339,7 @@ export const tools: Tool[] = [
     url: 'https://devin.ai',
     tags: ['全栈', 'Agent', '自动化'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '付费',
     features: [
       '端到端开发：理解需求 → 写代码 → 调试 → 部署',
@@ -363,6 +375,7 @@ export const tools: Tool[] = [
     url: 'https://www.midjourney.com',
     tags: ['艺术', '设计', 'Discord'],
     rating: 4.5,
+    commissionRate: 0.10,
     pricing: '免费+订阅',
     features: [
       '文字生成高质量艺术图像',
@@ -393,6 +406,7 @@ export const tools: Tool[] = [
     url: 'https://openai.com/dall-e-3',
     tags: ['设计', '创意', 'OpenAI'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '免费+订阅',
     features: [
       'ChatGPT 深度集成，提示词优化由 AI 完成',
@@ -423,6 +437,7 @@ export const tools: Tool[] = [
     url: 'https://stability.ai',
     tags: ['开源', '本地', '自定义'],
     rating: 4.5,
+    commissionRate: 0.05,
     pricing: '免费',
     features: [
       '完全开源，可本地部署，零使用成本',
@@ -454,6 +469,7 @@ export const tools: Tool[] = [
     url: 'https://flux.ai',
     tags: ['开源', '高质量', '新模型'],
     rating: 4.5,
+    commissionRate: 0.05,
     pricing: '免费',
     features: [
       '图像细节和提示词遵循度是目前开源最强',
@@ -485,6 +501,7 @@ export const tools: Tool[] = [
     url: 'https://www.recraft.ai',
     tags: ['设计', '矢量', '品牌'],
     rating: 3.5,
+    commissionRate: 0.05,
     pricing: '免费+订阅',
     features: [
       'AI 生成矢量图像（SVG 导出）',
@@ -519,6 +536,7 @@ export const tools: Tool[] = [
     url: 'https://openai.com/sora',
     tags: ['视频', 'OpenAI', '文生视频'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '免费+订阅',
     features: [
       '文字描述生成最长 60 秒高清视频',
@@ -549,6 +567,7 @@ export const tools: Tool[] = [
     url: 'https://runwayml.com',
     tags: ['视频', '编辑', '创作'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '免费+订阅',
     features: [
       '文字/图片生成视频（Gen-3 模型）',
@@ -579,6 +598,7 @@ export const tools: Tool[] = [
     url: 'https://pika.art',
     tags: ['视频', '快速', '社交'],
     rating: 3.5,
+    commissionRate: 0.05,
     pricing: '免费+订阅',
     features: [
       '文字生成视频，上手极简',
@@ -609,6 +629,7 @@ export const tools: Tool[] = [
     url: 'https://klingai.com',
     tags: ['国产', '视频', '快手'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '免费+订阅',
     features: [
       '文字生成视频，支持复杂提示词',
@@ -640,6 +661,7 @@ export const tools: Tool[] = [
     url: 'https://haiper.ai',
     tags: ['视频', '图像', '增强'],
     rating: 3.5,
+    commissionRate: 0.05,
     pricing: '免费',
     features: [
       '文字转视频生成',
@@ -674,6 +696,7 @@ export const tools: Tool[] = [
     url: 'https://elevenlabs.io',
     tags: ['语音', '配音', '克隆'],
     rating: 4.5,
+    commissionRate: 0.10,
     pricing: '免费+订阅',
     features: [
       '声音克隆：用 1 分钟音频复刻任何音色',
@@ -704,6 +727,7 @@ export const tools: Tool[] = [
     url: 'https://suno.ai',
     tags: ['音乐', '创作', 'AI作曲'],
     rating: 4.5,
+    commissionRate: 0.10,
     pricing: '免费+订阅',
     features: [
       '文字生成完整歌曲（人声+伴奏）',
@@ -734,6 +758,7 @@ export const tools: Tool[] = [
     url: 'https://udio.com',
     tags: ['音乐', '创作', '新工具'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '免费+订阅',
     features: [
       '文字生成完整歌曲，支持自定义歌词',
@@ -764,6 +789,7 @@ export const tools: Tool[] = [
     url: 'https://openai.com/index/whisper',
     tags: ['转录', '识别', '开源'],
     rating: 4.5,
+    commissionRate: 0.05,
     pricing: '免费',
     features: [
       '近百种语言的语音识别',
@@ -794,6 +820,7 @@ export const tools: Tool[] = [
     url: 'https://murf.ai',
     tags: ['语音', '配音', '商业'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '免费+订阅',
     features: [
       '120+ 种自然人声，20+ 语言',
@@ -828,6 +855,7 @@ export const tools: Tool[] = [
     url: 'https://www.perplexity.ai',
     tags: ['搜索', '研究', '引用'],
     rating: 4.5,
+    commissionRate: 0.10,
     pricing: '免费+订阅',
     features: [
       'AI 生成带来源引用的答案',
@@ -858,6 +886,7 @@ export const tools: Tool[] = [
     url: 'https://arc.net/goodies/arc-search',
     tags: ['搜索', '浏览器', '摘要'],
     rating: 3.5,
+    commissionRate: 0.05,
     pricing: '免费',
     features: [
       'AI 一键生成完整答案摘要',
@@ -888,6 +917,7 @@ export const tools: Tool[] = [
     url: 'https://www.n.cn',
     tags: ['国产', '搜索', '360'],
     rating: 3.5,
+    commissionRate: 0.05,
     pricing: '免费',
     features: [
       'AI 生成搜索答案，带来源引用',
@@ -918,6 +948,7 @@ export const tools: Tool[] = [
     url: 'https://devv.ai',
     tags: ['编程', '搜索', '开发者'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '免费',
     features: [
       '专为程序员设计的 AI 搜索',
@@ -948,6 +979,7 @@ export const tools: Tool[] = [
     url: 'https://tavily.com',
     tags: ['研究', '搜索', 'API'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '免费+订阅',
     features: [
       '专为 AI（RAG）设计的搜索 API',
@@ -982,6 +1014,7 @@ export const tools: Tool[] = [
     url: 'https://www.notion.so',
     tags: ['文档', '笔记', 'AI'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '免费+订阅',
     features: [
       '文档内 AI 写作、续写、润色',
@@ -1012,6 +1045,7 @@ export const tools: Tool[] = [
     url: 'https://gamma.app',
     tags: ['PPT', '演示', 'AI'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '免费+订阅',
     features: [
       '输入主题 AI 自动生成完整 PPT',
@@ -1042,6 +1076,7 @@ export const tools: Tool[] = [
     url: 'https://boardmix.cn',
     tags: ['白板', '协作', '思维导图'],
     rating: 3.5,
+    commissionRate: 0.05,
     pricing: '免费+订阅',
     features: [
       'AI 生成思维导图和流程图',
@@ -1072,6 +1107,7 @@ export const tools: Tool[] = [
     url: 'https://www.quark.cn',
     tags: ['浏览器', '国产', '效率'],
     rating: 3.5,
+    commissionRate: 0.05,
     pricing: '免费',
     features: [
       'AI 对话助手，提问即答',
@@ -1102,6 +1138,7 @@ export const tools: Tool[] = [
     url: 'https://tongyi.aliyun.com',
     tags: ['国产', '大模型', '阿里云'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '免费',
     features: [
       '多轮对话、写作、编程辅助',
@@ -1132,6 +1169,7 @@ export const tools: Tool[] = [
     url: 'https://yiyan.baidu.com',
     tags: ['国产', '大模型', '百度'],
     rating: 3.5,
+    commissionRate: 0.05,
     pricing: '免费',
     features: [
       '中文对话、写作、摘要',
@@ -1166,6 +1204,7 @@ export const tools: Tool[] = [
     url: 'https://grammarly.com',
     tags: ['写作', '英语', '语法'],
     rating: 4.5,
+    commissionRate: 0.10,
     pricing: '免费+订阅',
     features: [
       '实时语法和拼写检查',
@@ -1196,6 +1235,7 @@ export const tools: Tool[] = [
     url: 'https://www.beautiful.ai',
     tags: ['PPT', '设计', '演示'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '订阅',
     features: [
       'AI 自动排版：输入内容自动适配最佳布局',
@@ -1226,6 +1266,7 @@ export const tools: Tool[] = [
     url: 'https://www.canva.com',
     tags: ['设计', '模板', 'AI'],
     rating: 4.5,
+    commissionRate: 0.05,
     pricing: '免费+订阅',
     features: [
       'AI 图像生成（Text to Image）',
@@ -1256,6 +1297,7 @@ export const tools: Tool[] = [
     url: 'https://leonardo.ai',
     tags: ['游戏', '设计', '资产'],
     rating: 4.0,
+    commissionRate: 0.05,
     pricing: '免费+订阅',
     features: [
       '游戏资产生成：角色、场景、道具',

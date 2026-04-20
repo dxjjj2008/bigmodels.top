@@ -4,9 +4,11 @@ import '../styles/global.css';
 interface Props {
   title: string;
   description?: string;
+  keywords?: string;
 }
 
-const { title, description = 'AI 工具导航站' } = Astro.props;
+const { title, description = 'AI 工具导航站', keywords } = Astro.props;
+const currentPath = Astro.url.pathname;
 ---
 
 <!doctype html>
@@ -14,13 +16,28 @@ const { title, description = 'AI 工具导航站' } = Astro.props;
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
+    {keywords && <meta name="keywords" content={keywords} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta name="viewport" content="width=device-width" />
+    <meta name="theme-color" content="#6366F1" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="BigModels" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <!-- Google Analytics - TODO: Replace G-XXXXXXXXXX with your GA4 Measurement ID -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX');
+    </script> -->
+    <!-- Canonical URL -->
+    <link rel="canonical" href={`https://bigmodels.top${currentPath}`} />
   </head>
   <body class="min-h-screen bg-slate-50">
     <header class="bg-white shadow-sm border-b border-gray-200">
