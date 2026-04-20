@@ -192,7 +192,17 @@ const categoryCount = categories.length;
     );
 
     if (matched.length === 0) {
-      searchResults!.innerHTML = '<div class="px-4 py-3 text-gray-500 text-sm">未找到匹配的工具</div>';
+      searchResults!.innerHTML = `
+        <div class="px-4 py-3 text-gray-500 text-sm">未找到匹配的工具，试试更通用的关键词</div>
+        <div class="px-4 py-2 border-t border-gray-100">
+          <p class="text-xs text-gray-400 mb-2">🔥 热门工具</p>
+          <div class="grid grid-cols-2 gap-1">
+            <a href="/tool/chatgpt" class="text-xs text-brand-600 hover:text-brand-700 py-1">ChatGPT</a>
+            <a href="/tool/claude" class="text-xs text-brand-600 hover:text-brand-700 py-1">Claude</a>
+            <a href="/tool/midjourney" class="text-xs text-brand-600 hover:text-brand-700 py-1">Midjourney</a>
+            <a href="/tool/gemini" class="text-xs text-brand-600 hover:text-brand-700 py-1">Gemini</a>
+          </div>
+        </div>`;
     } else {
       searchResults!.innerHTML = matched.slice(0, 8).map(t => `
         <a href="${t.href}" class="flex items-center gap-3 px-4 py-3 hover:bg-brand-50 transition-colors border-b border-gray-100 last:border-0">

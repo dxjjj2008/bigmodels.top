@@ -22,3 +22,54 @@
 body {
   font-family: 'Inter', 'Noto Sans SC', sans-serif;
 }
+
+/* Dark mode base styles */
+.dark {
+  color-scheme: dark;
+}
+
+.dark body {
+  background-color: #0f172a;
+  color: #e2e8f0;
+}
+
+.dark .bg-white {
+  background-color: #1e293b !important;
+}
+
+.dark .bg-slate-50 {
+  background-color: #0f172a !important;
+}
+
+.dark .bg-slate-800 {
+  background-color: #1e293b !important;
+}
+
+.dark .border-gray-200,
+.dark .border-gray-100 {
+  border-color: #334155 !important;
+}
+
+.dark .text-gray-900,
+.dark .text-gray-700,
+.dark .text-gray-600 {
+  color: #e2e8f0 !important;
+}
+
+.dark .text-gray-500 {
+  color: #94a3b8 !important;
+}
+
+.dark .shadow-sm,
+.dark .shadow-md,
+.dark .shadow-lg {
+  box-shadow: 0 1px 3px rgba(0,0,0,0.4) !important;
+}
+
+.dark .hover\:border-brand-500:hover {
+  border-color: #818cf8 !important;
+}
+
+.dark .hover\:text-brand-600:hover {
+  color: #a5b4fc !important;
+}

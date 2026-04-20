@@ -1319,6 +1319,413 @@ export const tools: Tool[] = [
     affiliateUrl: 'https://leonardo.ai'
   },
 
+  // =====================
+  // 其他工具（续）
+  // =====================
+
+  {
+    id: 'jasper',
+    name: 'Jasper',
+    description: 'Jasper 是全球最流行的 AI 写作助手之一，专注于企业级营销内容生成。支持品牌声音定制、50+ 模板、多语言输出，可批量生成博客、社交媒体、广告文案等营销素材，适合营销团队和内容创作者。',
+    category: 'llm',
+    url: 'https://www.jasper.ai',
+    tags: ['写作', '营销', '内容生成'],
+    rating: 4.3,
+    commissionRate: 0.10,
+    pricing: '订阅',
+    features: [
+      'Brand Voice 品牌声音学习，保持文风一致',
+      '50+ 内容模板，覆盖博客、社媒、广告全场景',
+      '多语言生成，支持 30+ 语言',
+      '团队协作与工作流管理',
+      '浏览器插件，随时随地调用 AI'
+    ],
+    pros: [
+      '企业级工作流，团队使用体验成熟',
+      '模板丰富，上手快',
+      '品牌声音功能让内容更个性化'
+    ],
+    cons: [
+      '价格较贵，个人用户门槛高',
+      '免费额度有限',
+      '生成内容偏模板化'
+    ],
+    targetAudience: '营销团队、内容创作者、企业',
+    affiliateUrl: 'https://www.jasper.ai'
+  },
+
+  {
+    id: 'copy-ai',
+    name: 'Copy.ai',
+    description: 'Copy.ai 是一款专注外贸和跨境场景的 AI 文案工具，提供 90+ 工具模板，覆盖产品描述、邮件、客户回复、社交媒体等场景。支持多语言，特别适合 Shopify 商家和跨境电商从业者。',
+    category: 'llm',
+    url: 'https://www.copy.ai',
+    tags: ['写作', '外贸', '电商'],
+    rating: 4.2,
+    commissionRate: 0.10,
+    pricing: '免费+订阅',
+    features: [
+      '90+ 内容模板，覆盖 20+ 场景',
+      '多语言输出，支持中文提示词',
+      'Infobase 知识库，统一管理品牌信息',
+      'Browser Extension 随时调用',
+      'Zapier 集成，连接 5000+ 应用'
+    ],
+    pros: [
+      '外贸场景模板丰富',
+      '免费版额度充足',
+      '操作简单，零学习成本'
+    ],
+    cons: [
+      '长文本生成能力一般',
+      '中文内容质量不如英文',
+      '复杂提示词支持较弱'
+    ],
+    targetAudience: '跨境电商、外贸从业者、Shopify 商家',
+    affiliateUrl: 'https://www.copy.ai'
+  },
+
+  {
+    id: 'rytr',
+    name: 'Rytr',
+    description: 'Rytr 是一款性价比极高的 AI 写作工具，支持 40+ 场景模板和 30+ 语言，以极低的价格提供高质量文案生成，适合个人博主、小微企业和自由职业者快速产出内容。',
+    category: 'llm',
+    url: 'https://rytr.me',
+    tags: ['写作', '低价', '多语言'],
+    rating: 4.0,
+    commissionRate: 0.10,
+    pricing: '免费+订阅',
+    features: [
+      '40+ 使用场景模板',
+      '30+ 语言支持',
+      'AIDA 和 PAS 文案框架',
+      '富文本编辑器与导出选项',
+      'SAFER金字塔写作框架'
+    ],
+    pros: [
+      '价格极低，入门友好',
+      '语言支持多',
+      '操作直观，响应快速'
+    ],
+    cons: [
+      '长文本生成质量有限',
+      '无团队协作功能',
+      '高级功能需付费版'
+    ],
+    targetAudience: '个人博主、小微企业、自由职业者',
+    affiliateUrl: 'https://rytr.me'
+  },
+
+  {
+    id: 'writesonic',
+    name: 'Writesonic',
+    description: 'Writesonic 是一款集成 ChatSonic 对话式 AI 和 Article Bot 长文生成的综合写作平台，支持实时语音交互、图像生成、品牌声音定制，适合需要同时做对话营销和长文 SEO 的内容团队。',
+    category: 'llm',
+    url: 'https://writesonic.com',
+    tags: ['写作', 'SEO', '对话'],
+    rating: 4.2,
+    commissionRate: 0.08,
+    pricing: '免费+订阅',
+    features: [
+      'ChatSonic 对话式 AI（类 GPT）',
+      'Article Bot 长文 SEO 文章生成',
+      'PhotoSonic AI 图片生成',
+      '品牌声音（Brand Voice）定制',
+      'API 接口，支持开发者集成'
+    ],
+    pros: [
+      '对话+长文一站式解决',
+      '实时语音交互有差异化',
+      '图片生成集成在同一平台'
+    ],
+    cons: [
+      '界面复杂，功能较多',
+      'SEO 文章需要人工编辑',
+      '免费额度相对较少'
+    ],
+    targetAudience: '内容营销团队、SEO 从业者、数字营销人员',
+    affiliateUrl: 'https://writesonic.com'
+  },
+
+  {
+    id: 'synthesia',
+    name: 'Synthesia',
+    description: 'Synthesia 是全球领先的 AI 视频生成平台，仅需文本即可生成真人出镜数字人视频。支持 140+ 声音和 130+ 数字人模板，广泛用于企业培训、营销视频和产品演示，大幅降低视频制作成本。',
+    category: 'video',
+    url: 'https://www.synthesia.io',
+    tags: ['视频', '数字人', '企业培训'],
+    rating: 4.6,
+    commissionRate: 0.10,
+    pricing: '订阅',
+    features: [
+      '140+ AI 声音，130+ 数字人',
+      '纯文本转真人视频，无需录制',
+      '视频自动翻译（ Automatic Translation）',
+      'PPT 转视频功能',
+      '自定义数字人（My Avatars）'
+    ],
+    pros: [
+      '企业培训场景非常成熟',
+      '多语言视频一键生成',
+      '无需拍摄设备，降低制作成本'
+    ],
+    cons: [
+      '每月视频分钟数有限',
+      '中文数字人可选较少',
+      '定制数字人需要额外费用'
+    ],
+    targetAudience: '企业培训部门、营销团队、在线教育',
+    affiliateUrl: 'https://www.synthesia.io'
+  },
+
+  {
+    id: 'heygen',
+    name: 'HeyGen',
+    description: 'HeyGen 是一款专注于创意内容的 AI 视频生成平台，提供 100+ 数字人形象和即时语音克隆功能，特别适合制作营销视频、广告创意和社交媒体内容，以其高质量数字人和丰富的模板库著称。',
+    category: 'video',
+    url: 'https://www.heygen.com',
+    tags: ['视频', '数字人', '创意'],
+    rating: 4.5,
+    commissionRate: 0.10,
+    pricing: '免费+订阅',
+    features: [
+      '100+ 数字人模板，覆盖多种场景',
+      '即时语音克隆（Voice Clone）',
+      'AI 文字转视频，几分钟出片',
+      '视频翻译（Video Translate）多语言',
+      'API 接口，支持自动化工作流'
+    ],
+    pros: [
+      '数字人质量极高，业界领先',
+      '创意视频模板丰富',
+      '社交媒体场景优化到位'
+    ],
+    cons: [
+      '免费版有限制',
+      '中文支持不如英文原生',
+      '高画质输出需付费版'
+    ],
+    targetAudience: '社交媒体运营者、内容创作者、创意营销团队',
+    affiliateUrl: 'https://www.heygen.com'
+  },
+
+  {
+    id: 'descript',
+    name: 'Descript',
+    description: 'Descript 是一款革命性的音视频编辑工具，将转录、编辑、协作和 AI 配音融为一体。编辑视频像编辑文档一样简单，支持 AI 语音克隆、Studio Sound 降噪和内嵌屏幕录制，是播客和视频创作者的效率利器。',
+    category: 'video',
+    url: 'https://www.descript.com',
+    tags: ['视频编辑', '播客', '转录'],
+    rating: 4.5,
+    commissionRate: 0.10,
+    pricing: '免费+订阅',
+    features: [
+      '转录式编辑（Edit by transcript）',
+      'AI 语音克隆（Overdub）',
+      'Studio Sound 智能降噪',
+      '内嵌屏幕录制',
+      '协作评论与版本管理'
+    ],
+    pros: [
+      '编辑体验颠覆传统',
+      '播客工作流完整',
+      'AI 配音质量高'
+    ],
+    cons: [
+      '对国内用户网络不稳定',
+      '高级 AI 功能需付费',
+      '学习曲线较陡'
+    ],
+    targetAudience: '播客主、视频创作者、内容团队',
+    affiliateUrl: 'https://www.descript.com'
+  },
+
+  {
+    id: 'fireflies',
+    name: 'Fireflies.ai',
+    description: 'Fireflies.ai 是一款 AI 会议助手，自动转录、总结和分析 Google Meet、Zoom、Teams 等平台的会议内容。支持语音搜索、关键信息提取、CRM 自动录入，大幅减少会后整理时间。',
+    category: 'audio',
+    url: 'https://fireflies.ai',
+    tags: ['会议', '转录', '效率'],
+    rating: 4.4,
+    commissionRate: 0.15,
+    pricing: '免费+订阅',
+    features: [
+      '会议自动转录（95+ 语言）',
+      'AI Summarize 会议摘要生成',
+      '语音搜索关键讨论点',
+      'CRM 自动录入（Salesforce、HubSpot）',
+      '团队知识库共享'
+    ],
+    pros: [
+      '会议效率提升显著',
+      '高佣金率（15%）',
+      '集成生态丰富'
+    ],
+    cons: [
+      '对中文会议的转录准确率一般',
+      '免费版功能有限',
+      '隐私合规需要额外配置'
+    ],
+    targetAudience: '销售团队、项目管理者、企业会议多的团队',
+    affiliateUrl: 'https://fireflies.ai'
+  },
+
+  {
+    id: 'otter',
+    name: 'Otter.ai',
+    description: 'Otter.ai 是专注于实时语音转文字的 AI 助手，适用于会议、访谈和课堂记录。与 Zoom、Google Meet深度集成，支持实时字幕生成、自动摘要和关键词提取，是知识工作者的贴身记录员。',
+    category: 'audio',
+    url: 'https://otter.ai',
+    tags: ['会议', '转录', '字幕'],
+    rating: 4.3,
+    commissionRate: 0.15,
+    pricing: '免费+订阅',
+    features: [
+      '实时语音转文字（Live Transcription）',
+      '会议自动录音+转录',
+      '自动生成摘要和行动项',
+      '关键词高亮和语音搜索',
+      '与 Zoom、Google Meet、Microsoft Teams 深度集成'
+    ],
+    pros: [
+      '实时转录速度快',
+      '课堂/访谈记录体验优秀',
+      '多人协作标注功能完善'
+    ],
+    cons: [
+      '中文识别准确率有限',
+      '免费版时长有限',
+      '对环境噪音敏感'
+    ],
+    targetAudience: '记者、学生、研究人员、会议多的职场人士',
+    affiliateUrl: 'https://otter.ai'
+  },
+
+  {
+    id: 'playht',
+    name: 'Play.ht',
+    description: 'Play.ht 是专注语音克隆和对话式 AI 语音的生成平台，提供 900+ AI 声音和即时语音克隆服务，特别适合开发对话式 AI 应用、虚拟主播和语音助手场景，也支持传统视频配音需求。',
+    category: 'audio',
+    url: 'https://play.ht',
+    tags: ['语音克隆', '配音', '开发'],
+    rating: 4.2,
+    commissionRate: 0.10,
+    pricing: '免费+订阅',
+    features: [
+      '900+ AI 声音，覆盖 140+ 语言',
+      '即时语音克隆（10秒样本）',
+      '对话式 AI 语音生成',
+      '流式语音合成 API',
+      '多情感语音（悲伤、兴奋等）'
+    ],
+    pros: [
+      '语音克隆效果逼真',
+      '开发者 API 体验好',
+      '情感语音选择丰富'
+    ],
+    cons: [
+      '免费版商用有限制',
+      '部分声音克隆需要授权',
+      '国内访问速度不稳'
+    ],
+    targetAudience: '开发者、虚拟主播、对话式 AI 应用开发者',
+    affiliateUrl: 'https://play.ht'
+  },
+
+  {
+    id: 'pixelcut',
+    name: 'Pixelcut',
+    description: 'Pixelcut 是一款面向电商的 AI 图片编辑工具，支持一键去背景、AI 商品图生成、图片放大和批量处理，特别适合 Shopify 商家和亚马逊卖家快速制作高质量产品图片。',
+    category: 'image',
+    url: 'https://pixelcut.ai',
+    tags: ['图像编辑', '电商', '去背景'],
+    rating: 4.1,
+    commissionRate: 0.10,
+    pricing: '免费+订阅',
+    features: [
+      'AI 去背景（一键抠图）',
+      'AI 商品图生成（魔法橡皮擦等）',
+      '图片放大（4K Upscale）',
+      '批量处理功能',
+      'Shopify 和亚马逊插件'
+    ],
+    pros: [
+      '电商场景打磨深入',
+      '去背景效果精准',
+      '批量处理效率高'
+    ],
+    cons: [
+      '设计模板相对有限',
+      '复杂图片编辑能力不足',
+      '免费版输出有水印'
+    ],
+    targetAudience: '电商卖家、Shopify 商家、亚马逊卖家',
+    affiliateUrl: 'https://pixelcut.ai'
+  },
+
+  {
+    id: 'photoroom',
+    name: 'PhotoRoom',
+    description: 'PhotoRoom 是一款专注于商业图片编辑的 AI 工具，以精准的背景移除和丰富的模板著称。提供 API 服务，支持批量处理，是电商图片制作和营销素材快速生成的利器。',
+    category: 'image',
+    url: 'https://www.photoroom.com',
+    tags: ['图像编辑', '电商', '去背景'],
+    rating: 4.3,
+    commissionRate: 0.10,
+    pricing: '免费+订阅',
+    features: [
+      'Instant Backgrounds 即时背景生成',
+      'Batch Editor 批量编辑',
+      'Retouch 修图工具',
+      'API 接口，支持自动化',
+      'App 和 Figma 插件'
+    ],
+    pros: [
+      '背景替换效果自然',
+      '模板丰富多样',
+      'API 对开发者友好'
+    ],
+    cons: [
+      '免费版图片有水印',
+      '高分辨率输出需付费',
+      '人像处理偶有瑕疵'
+    ],
+    targetAudience: '电商卖家、营销设计师、摄影师',
+    affiliateUrl: 'https://www.photoroom.com'
+  },
+
+  {
+    id: 'kittl',
+    name: 'Kittl',
+    description: 'Kittl 是一款专为设计师打造的 AI 设计工具，提供海量模板和 AI 生成功能，支持图标插画生成、图片编辑和品牌套件创建，适合快速制作 T 恤、包装、社交媒体等设计素材。',
+    category: 'image',
+    url: 'https://www.kittl.com',
+    tags: ['设计', '模板', '插画'],
+    rating: 4.2,
+    commissionRate: 0.10,
+    pricing: '免费+订阅',
+    features: [
+      'AI 插画图标生成',
+      '海量设计模板（社媒、印刷等）',
+      '品牌套件（Brand Kit）管理',
+      '图片 AI 编辑（放大、去背景）',
+      '商用字体和素材库'
+    ],
+    pros: [
+      '设计模板审美在线',
+      '插画生成质量高',
+      '品牌管理功能实用'
+    ],
+    cons: [
+      '中文界面支持有限',
+      '离线功能缺失',
+      '免费版功能受限较多'
+    ],
+    targetAudience: '平面设计师、社交媒体运营、电商设计师',
+    affiliateUrl: 'https://www.kittl.com'
+  },
+
 ];
 
 // =====================

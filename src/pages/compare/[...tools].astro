@@ -1,0 +1,261 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { tools, categories } from '../../data/tools';
+
+// 生成所有工具两两组合的静态路径
+export function getStaticPaths() {
+  const paths = [];
+  for (let i = 0; i < tools.length; i++) {
+    for (let j = i + 1; j < tools.length; j++) {
+      paths.push({ params: { tools: `${tools[i].id}-vs-${tools[j].id}` } });
+    }
+  }
+  return paths;
+}
+
+// 从 URL 参数获取两个工具 ID
+const { tools: toolsParam } = Astro.params;
+const ids = toolsParam?.split('-vs-') || [];
+
+const toolA = tools.find(t => t.id === ids[0]);
+const toolB = tools.find(t => t.id === ids[1]);
+
+// 获取所有工具用于选择器
+const allTools = [...tools].sort((a, b) => a.name.localeCompare(b.name));
+
+// 如果没有有效参数，重定向
+if (!toolA || !toolB) {
+  return Astro.redirect('/');
+}
+
+// 计算综合得分
+const scoreA = (toolA.commissionRate * 100 * toolA.rating).toFixed(1);
+const scoreB = (toolB.commissionRate * 100 * toolB.rating).toFixed(1);
+
+const categoryA = categories.find(c => c.id === toolA.category);
+const categoryB = categories.find(c => c.id === toolB.category);
+
+function renderStars(rating: number) {
+  const full = Math.floor(rating);
+  const half = rating % 1 >= 0.5;
+  return '★'.repeat(full) + (half ? '½' : '') + '☆'.repeat(5 - full - (half ? 1 : 0));
+}
+---
+
+<Layout title={`${toolA.name} vs ${toolB.name} - BigModels.top`}>
+  <div class="max-w-5xl mx-auto">
+    <!-- 页面标题 -->
+    <div class="text-center mb-8">
+      <h1 class="text-3xl font-bold text-gray-900 mb-2">AI 工具横向对比</h1>
+      <p class="text-gray-500">选择两个工具，了解它们的评分、定价和功能差异</p>
+    </div>
+
+    <!-- 工具选择器 -->
+    <div class="bg-white rounded-2xl border border-gray-200 p-6 mb-8 shadow-sm">
+      <div class="flex flex-col md:flex-row items-center justify-center gap-4">
+        <select id="selectA" class="flex-1 max-w-xs px-4 py-2 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-400">
+          <option value="">选择工具 A...</option>
+          {allTools.map(t => (
+            <option value={t.id} selected={t.id === toolA.id}>{t.name}</option>
+          ))}
+        </select>
+        <span class="text-2xl font-bold text-brand-500">VS</span>
+        <select id="selectB" class="flex-1 max-w-xs px-4 py-2 rounded-xl border border-gray-200 bg-white text-gray-900 focus:outline-none focus:ring-2 focus:ring-brand-400">
+          <option value="">选择工具 B...</option>
+          {allTools.map(t => (
+            <option value={t.id} selected={t.id === toolB.id}>{t.name}</option>
+          ))}
+        </select>
+        <button id="compareBtn" class="bg-brand-500 hover:bg-brand-600 text-white px-6 py-2 rounded-xl font-medium transition-colors">
+          对比
+        </button>
+      </div>
+    </div>
+
+    <!-- 对比结果 -->
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
+      <!-- 工具 A -->
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+        <div class="bg-gradient-to-r from-brand-500 to-accent-500 p-6 text-white">
+          <div class="flex items-start justify-between">
+            <div>
+              <h2 class="text-2xl font-bold mb-1">{toolA.name}</h2>
+              <p class="text-white/80 text-sm">{categoryA?.icon} {categoryA?.name}</p>
+            </div>
+            <div class="text-right">
+              <div class="text-3xl font-black">{scoreA}</div>
+              <div class="text-white/70 text-xs">综合分</div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 space-y-4">
+          <!-- 评分 -->
+          <div class="flex items-center justify-between">
+            <span class="text-gray-500 text-sm">评分</span>
+            <span class="text-amber-500 font-semibold">{renderStars(toolA.rating)} {toolA.rating.toFixed(1)}</span>
+          </div>
+          <!-- 定价 -->
+          <div class="flex items-center justify-between">
+            <span class="text-gray-500 text-sm">定价</span>
+            <span class="font-medium text-gray-900">{toolA.pricing}</span>
+          </div>
+          <!-- 佣金率 -->
+          <div class="flex items-center justify-between">
+            <span class="text-gray-500 text-sm">佣金率</span>
+            <span class="bg-green-100 text-green-700 px-3 py-0.5 rounded-full text-sm font-semibold">
+              {(toolA.commissionRate * 100).toFixed(0)}%
+            </span>
+          </div>
+          <!-- 核心功能 -->
+          <div>
+            <h3 class="text-gray-500 text-sm mb-2">核心功能</h3>
+            <ul class="space-y-1">
+              {toolA.features.map(f => (
+                <li class="flex items-start gap-2 text-sm text-gray-700">
+                  <span class="text-brand-500 mt-0.5">•</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <!-- 优点 -->
+          <div>
+            <h3 class="text-gray-500 text-sm mb-2">✅ 优点</h3>
+            <ul class="space-y-1">
+              {toolA.pros.map(p => (
+                <li class="flex items-start gap-2 text-sm text-gray-700">
+                  <span class="text-green-500 mt-0.5">✓</span>
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <!-- 缺点 -->
+          <div>
+            <h3 class="text-gray-500 text-sm mb-2">❌ 缺点</h3>
+            <ul class="space-y-1">
+              {toolA.cons.map(c => (
+                <li class="flex items-start gap-2 text-sm text-gray-700">
+                  <span class="text-red-400 mt-0.5">✗</span>
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <!-- 适用人群 -->
+          <div class="pt-2 border-t border-gray-100">
+            <p class="text-xs text-gray-500 mb-1">适用人群</p>
+            <p class="text-sm text-gray-700">{toolA.targetAudience}</p>
+          </div>
+          <!-- 跳转按钮 -->
+          <a href={toolA.url} target="_blank" rel="noopener noreferrer"
+            class="block text-center bg-brand-500 hover:bg-brand-600 text-white py-2.5 rounded-xl font-medium transition-colors">
+            访问 {toolA.name} →
+          </a>
+        </div>
+      </div>
+
+      <!-- 工具 B -->
+      <div class="bg-white rounded-2xl border border-gray-200 shadow-sm overflow-hidden">
+        <div class="bg-gradient-to-r from-accent-500 to-purple-600 p-6 text-white">
+          <div class="flex items-start justify-between">
+            <div>
+              <h2 class="text-2xl font-bold mb-1">{toolB.name}</h2>
+              <p class="text-white/80 text-sm">{categoryB?.icon} {categoryB?.name}</p>
+            </div>
+            <div class="text-right">
+              <div class="text-3xl font-black">{scoreB}</div>
+              <div class="text-white/70 text-xs">综合分</div>
+            </div>
+          </div>
+        </div>
+        <div class="p-6 space-y-4">
+          <!-- 评分 -->
+          <div class="flex items-center justify-between">
+            <span class="text-gray-500 text-sm">评分</span>
+            <span class="text-amber-500 font-semibold">{renderStars(toolB.rating)} {toolB.rating.toFixed(1)}</span>
+          </div>
+          <!-- 定价 -->
+          <div class="flex items-center justify-between">
+            <span class="text-gray-500 text-sm">定价</span>
+            <span class="font-medium text-gray-900">{toolB.pricing}</span>
+          </div>
+          <!-- 佣金率 -->
+          <div class="flex items-center justify-between">
+            <span class="text-gray-500 text-sm">佣金率</span>
+            <span class="bg-green-100 text-green-700 px-3 py-0.5 rounded-full text-sm font-semibold">
+              {(toolB.commissionRate * 100).toFixed(0)}%
+            </span>
+          </div>
+          <!-- 核心功能 -->
+          <div>
+            <h3 class="text-gray-500 text-sm mb-2">核心功能</h3>
+            <ul class="space-y-1">
+              {toolB.features.map(f => (
+                <li class="flex items-start gap-2 text-sm text-gray-700">
+                  <span class="text-brand-500 mt-0.5">•</span>
+                  {f}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <!-- 优点 -->
+          <div>
+            <h3 class="text-gray-500 text-sm mb-2">✅ 优点</h3>
+            <ul class="space-y-1">
+              {toolB.pros.map(p => (
+                <li class="flex items-start gap-2 text-sm text-gray-700">
+                  <span class="text-green-500 mt-0.5">✓</span>
+                  {p}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <!-- 缺点 -->
+          <div>
+            <h3 class="text-gray-500 text-sm mb-2">❌ 缺点</h3>
+            <ul class="space-y-1">
+              {toolB.cons.map(c => (
+                <li class="flex items-start gap-2 text-sm text-gray-700">
+                  <span class="text-red-400 mt-0.5">✗</span>
+                  {c}
+                </li>
+              ))}
+            </ul>
+          </div>
+          <!-- 适用人群 -->
+          <div class="pt-2 border-t border-gray-100">
+            <p class="text-xs text-gray-500 mb-1">适用人群</p>
+            <p class="text-sm text-gray-700">{toolB.targetAudience}</p>
+          </div>
+          <!-- 跳转按钮 -->
+          <a href={toolB.url} target="_blank" rel="noopener noreferrer"
+            class="block text-center bg-brand-500 hover:bg-brand-600 text-white py-2.5 rounded-xl font-medium transition-colors">
+            访问 {toolB.name} →
+          </a>
+        </div>
+      </div>
+    </div>
+
+    <!-- 返回首页 -->
+    <div class="text-center">
+      <a href="/" class="inline-flex items-center gap-2 text-brand-500 hover:text-brand-600 font-medium">
+        ← 返回首页
+      </a>
+    </div>
+  </div>
+</Layout>
+
+<script>
+  const selectA = document.getElementById('selectA') as HTMLSelectElement;
+  const selectB = document.getElementById('selectB') as HTMLSelectElement;
+  const compareBtn = document.getElementById('compareBtn') as HTMLButtonElement;
+
+  compareBtn?.addEventListener('click', () => {
+    const a = selectA.value;
+    const b = selectB.value;
+    if (a && b && a !== b) {
+      window.location.href = `/compare/${a}-vs-${b}`;
+    }
+  });
+</script>
