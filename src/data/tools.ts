@@ -1942,8 +1942,6 @@ export const tools: Tool[] = [
 
 ];
 
-export function getToolById
-
 // =====================
 // 辅助函数
 // =====================
