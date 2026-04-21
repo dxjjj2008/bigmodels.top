@@ -1,0 +1,144 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, render } from 'astro:content';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts
+    .filter(post => post.data.published)
+    .map(post => ({
+      params: { slug: post.id },
+      props: { post },
+    }));
+}
+
+const { post } = Astro.props;
+const { Content } = await render(post);
+
+function getReadingTime(body: string) {
+  const words = body.trim().split(/\s+/).length;
+  return Math.ceil(words / 200);
+}
+
+const readingTime = getReadingTime(post.body);
+const siteUrl = 'https://bigmodels.top';
+const postUrl = `${siteUrl}/blog/${post.id}`;
+
+// JSON-LD structured data
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "description": post.data.description,
+  "image": post.data.coverImage || undefined,
+  "datePublished": post.data.pubDate?.toISOString(),
+  "author": {
+    "@type": "Organization",
+    "name": "BigModels.top",
+    "url": siteUrl
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "BigModels.top",
+    "url": siteUrl
+  },
+  "url": postUrl,
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": postUrl
+  }
+};
+---
+
+<Layout title={`${post.data.title} - BigModels.top`} description={post.data.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} slot="head" />
+  <article class="max-w-4xl mx-auto">
+    {post.data.coverImage && (
+      <div class="w-full h-64 md:h-80 overflow-hidden rounded-2xl mb-8">
+        <img 
+          src={post.data.coverImage} 
+          alt={post.data.title}
+          class="w-full h-full object-cover"
+        />
+      </div>
+    )}
+    <div class="bg-white rounded-2xl shadow-sm border border-gray-200 p-6 md:p-10">
+    <header class="mb-8 pb-8 border-b border-gray-200">
+      <div class="flex items-center gap-2 mb-4 flex-wrap">
+        <span class="text-xs bg-brand-100 text-brand-600 px-3 py-1 rounded-full">
+          {post.data.category}
+        </span>
+        {post.data.featured && (
+          <span class="text-xs bg-amber-100 text-amber-600 px-3 py-1 rounded-full">
+            ⭐ 精选
+          </span>
+        )}
+        <span class="text-xs text-gray-400">
+          ⏱ {readingTime} 分钟阅读
+        </span>
+      </div>
+      
+      <h1 class="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 leading-tight">
+        {post.data.title}
+      </h1>
+      
+      <p class="text-base md:text-lg text-gray-600 mb-4">
+        {post.data.description}
+      </p>
+      
+      <div class="flex items-center gap-4 text-sm text-gray-500">
+        <span>{post.data.author}</span>
+        {post.data.pubDate && (
+          <span>
+            {new Date(post.data.pubDate).toLocaleDateString('zh-CN', {
+              year: 'numeric',
+              month: 'long',
+              day: 'numeric'
+            })}
+          </span>
+        )}
+      </div>
+      
+      <div class="flex items-center gap-2 mt-4 flex-wrap">
+        {post.data.tags.map(tag => (
+          <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">
+            {tag}
+          </span>
+        ))}
+      </div>
+    </header>
+    
+    <div class="prose prose-lg max-w-none
+      prose-headings:text-gray-900 prose-headings:font-bold
+      prose-h2:text-2xl prose-h2:mt-10 prose-h2:mb-4 prose-h2:pt-6 prose-h2:border-t prose-h2:border-gray-100
+      prose-h3:text-xl prose-h3:mt-8 prose-h3:mb-3 prose-h3:font-semibold
+      prose-p:text-gray-700 prose-p:leading-relaxed prose-p:mb-4
+      prose-a:text-brand-600 prose-a:no-underline hover:prose-a:underline
+      prose-strong:text-gray-900 prose-strong:font-semibold
+      prose-ul:text-gray-700 prose-ul:my-4 prose-ul:list-disc prose-ul:pl-6
+      prose-ol:text-gray-700 prose-ol:my-4 prose-ol:list-decimal prose-ol:pl-6
+      prose-li:text-gray-700 prose-li:mb-2
+      prose-table:text-sm
+      prose-th:bg-gray-50 prose-th:text-gray-700 prose-th:px-4 prose-th:py-3 prose-th:font-semibold prose-th:border prose-th:border-gray-200
+      prose-td:text-gray-700 prose-td:px-4 prose-td:py-3 prose-td:border prose-td:border-gray-200
+      prose-blockquote:border-l-4 prose-blockquote:border-brand-500 prose-blockquote:bg-gray-50 prose-blockquote:py-3 prose-blockquote:px-4 prose-blockquote:my-6 prose-blockquote:rounded-r-lg
+      prose-code:text-brand-600 prose-code:bg-gray-100 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
+      prose-pre:bg-gray-900 prose-pre:text-gray-100 prose-pre:rounded-lg prose-pre:p-4 prose-pre:overflow-x-auto prose-pre:my-6
+      hr:border-gray-200 hr:my-8
+    ">
+      <Content />
+    </div>
+    
+    <footer class="mt-12 pt-8 border-t border-gray-200">
+      <div class="bg-gradient-to-r from-brand-50 to-indigo-50 rounded-2xl p-6 text-center">
+        <p class="text-brand-700 font-medium mb-2">
+          💡 觉得有用？收藏 BigModels.top 获取更多 AI 工具评测！
+        </p>
+        <a href="/" class="text-brand-600 hover:text-brand-700 underline">
+          浏览全部 AI 工具 →
+        </a>
+      </div>
+    </footer>
+    </div>
+  </article>
+</Layout>

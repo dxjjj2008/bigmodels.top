@@ -1,0 +1,89 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .filter(post => post.data.published)
+  .sort((a, b) => (b.data.pubDate?.getTime() ?? 0) - (a.data.pubDate?.getTime() ?? 0));
+
+function getReadingTime(body: string) {
+  const words = body.trim().split(/\s+/).length;
+  const minutes = Math.ceil(words / 200);
+  return minutes;
+}
+---
+
+<Layout title="博客 - BigModels.top" description="AI 工具评测文章、对比分析、实用教程">
+  <div class="max-w-4xl mx-auto">
+    <div class="text-center mb-12">
+      <h1 class="text-3xl md:text-4xl font-bold text-gray-900 mb-4">📝 AI 工具评测博客</h1>
+      <p class="text-gray-600">精选 AI 工具评测、深度对比、实用教程</p>
+    </div>
+    
+    <div class="grid gap-6">
+      {posts.map(post => (
+        <article class="bg-white rounded-2xl shadow-sm border border-gray-200 hover:border-brand-500 hover:shadow-md transition-all duration-300 overflow-hidden">
+          <a href={`/blog/${post.id}`} class="block">
+            <div class="flex flex-col sm:flex-row">
+              {post.data.coverImage && (
+                <div class="sm:w-48 h-48 sm:h-auto shrink-0 overflow-hidden">
+                  <img 
+                    src={post.data.coverImage} 
+                    alt={post.data.title}
+                    class="w-full h-full object-cover hover:scale-105 transition-transform duration-300"
+                    loading="lazy"
+                  />
+                </div>
+              )}
+              <div class="flex-1 p-6">
+                <div class="flex items-start justify-between gap-4">
+                  <div class="flex-1">
+                    <div class="flex items-center gap-2 mb-3 flex-wrap">
+                      <span class="text-xs bg-brand-100 text-brand-600 px-3 py-1 rounded-full">
+                        {post.data.category}
+                      </span>
+                      {post.data.featured && (
+                        <span class="text-xs bg-amber-100 text-amber-600 px-3 py-1 rounded-full">
+                          ⭐ 精选
+                        </span>
+                      )}
+                      <span class="text-xs text-gray-400">
+                        ⏱ {getReadingTime(post.body)} 分钟阅读
+                      </span>
+                    </div>
+                    <h2 class="text-xl md:text-2xl font-bold text-gray-900 hover:text-brand-600 mb-3 transition-colors">
+                      {post.data.title}
+                    </h2>
+                    <p class="text-gray-600 text-sm md:text-base line-clamp-3 mb-4">
+                      {post.data.description}
+                    </p>
+                    <div class="flex items-center gap-3 flex-wrap">
+                      {post.data.tags.map(tag => (
+                        <span class="text-xs bg-gray-100 text-gray-600 px-3 py-1 rounded-full">
+                          {tag}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                  <div class="hidden sm:flex items-center text-gray-400 shrink-0">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path>
+                    </svg>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+
+    {posts.length === 0 && (
+      <div class="text-center py-16">
+        <div class="text-6xl mb-4">📝</div>
+        <p class="text-xl text-gray-600 mb-2">暂无文章，敬请期待！</p>
+        <p class="text-gray-500">我们正在准备精彩的 AI 工具评测内容。</p>
+      </div>
+    )}
+  </div>
+</Layout>
