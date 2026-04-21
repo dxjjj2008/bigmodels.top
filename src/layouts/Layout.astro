@@ -16,6 +16,7 @@ const currentPath = Astro.url.pathname;
   <head>
     <meta charset="UTF-8" />
     <meta name="description" content={description} />
+    <meta name="google-site-verification" content="7naGanyO_EB-dldcXJeeSxUZrnjJDh4nWNU6996Bvh4" />
     {keywords && <meta name="keywords" content={keywords} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -61,8 +62,13 @@ const currentPath = Astro.url.pathname;
     
     <footer class="bg-white dark:bg-slate-800 border-t border-gray-200 dark:border-slate-700 mt-auto">
       <div class="max-w-6xl mx-auto px-4 py-6">
-        <p class="text-center text-gray-500 dark:text-gray-400 text-sm">
+        <p class="text-center text-gray-500 dark:text-gray-400 text-sm mb-4">
           © {new Date().getFullYear()} BigModels.top - AI 工具导航站
+        </p>
+        <p class="text-center">
+          <a href="https://launchboosts.com/project/bigmodels" target="_blank" rel="noopener noreferrer">
+            <img src="https://launchboosts.com/badges/featured-dark.svg" alt="Featured on LaunchBoosts" width="180" height="54" class="inline" />
+          </a>
         </p>
       </div>
     </footer>

@@ -1726,7 +1726,223 @@ export const tools: Tool[] = [
     affiliateUrl: 'https://www.kittl.com'
   },
 
+  // =====================
+  // 🇨🇳 国产 AI 工具补充
+  // =====================
+
+  {
+    id: 'zhipu',
+    name: '智谱 AI (GLM-4)',
+    description: '智谱 AI 是清华大学技术背景的国产大模型公司，GLM-4 系列在中文理解、逻辑推理和多模态能力上表现优秀。提供 API 服务，支持开源模型调用，是国内 AI 开发者首选的基座模型之一。',
+    category: 'llm',
+    url: 'https://www.zhipuai.cn',
+    tags: ['国产AI', '大模型', '开源', 'API'],
+    rating: 4.5,
+    commissionRate: 0.15,
+    pricing: '免费+API',
+    features: [
+      'GLM-4 旗舰模型，中文理解优秀',
+      '开源模型可本地部署（GLM-4-AllTools）',
+      '多模态理解（图像、文档）',
+      'API 文档完善，调用便捷',
+      'ChatGLM 对话助手免费使用'
+    ],
+    pros: [
+      '清华大学技术背景，研发实力强',
+      '开源模型质量高，可商用',
+      'API 价格实惠'
+    ],
+    cons: [
+      '部分场景不如 GPT-4',
+      '生态插件相对较少'
+    ],
+    targetAudience: '开发者、AI 应用创业者、学术研究者',
+    affiliateUrl: 'https://www.zhipuai.cn'
+  },
+
+  {
+    id: 'spark',
+    name: '讯飞星火',
+    description: '讯飞星火是科大讯飞推出的国产大模型，以语音技术深度整合著称。在语音输入输出、实时翻译、多语言支持方面有明显优势，特别适合需要语音交互的场景。',
+    category: 'llm',
+    url: 'https://xinghuo.xfyun.cn',
+    tags: ['国产AI', '语音', '翻译', '教育'],
+    rating: 4.4,
+    commissionRate: 0.10,
+    pricing: '免费+订阅',
+    features: [
+      '语音实时输入输出',
+      '多语言实时翻译',
+      '星火文档解析（PDF、PPT 等）',
+      'PPT 生成功能',
+      '安卓/iOS 多端同步'
+    ],
+    pros: [
+      '语音技术领先，识别准确率高',
+      '教育场景功能丰富',
+      '多端同步体验好'
+    ],
+    cons: [
+      '纯文本对话能力略弱',
+      '开放平台能力相对有限'
+    ],
+    targetAudience: '学生、教育用户、语音交互需求者',
+    affiliateUrl: 'https://xinghuo.xfyun.cn'
+  },
+
+  {
+    id: 'siliconflow',
+    name: '硅基流动',
+    description: '硅基流动是国产 AI API 聚合平台，聚合多个国产大模型 API（DeepSeek、GLM、Qwen 等），提供稳定、高速的推理服务。开发者友好，是国内调用大模型 API 的便捷选择。',
+    category: 'llm',
+    url: 'https://siliconflow.cn',
+    tags: ['国产AI', 'API', '开发者', '聚合'],
+    rating: 4.6,
+    commissionRate: 0.15,
+    pricing: '免费+API',
+    features: [
+      '聚合 DeepSeek、GLM、Qwen 等多模型',
+      '稳定高速的推理服务',
+      'SDK 支持 Python、Go、Node.js',
+      '具有竞争力的 API 价格',
+      '国内访问速度快'
+    ],
+    pros: [
+      '多模型聚合，一个平台搞定',
+      '国内部署，访问稳定',
+      '价格有竞争力'
+    ],
+    cons: [
+      '部分高级功能需要付费',
+      '高并发场景可能限流'
+    ],
+    targetAudience: '开发者、AI 应用创业者',
+    affiliateUrl: 'https://siliconflow.cn'
+  },
+
+  {
+    id: 'wanxiang',
+    name: '通义万相',
+    description: '通义万相是阿里云推出的 AI 图像生成工具，基于自研模型，提供文本生成图像、图像风格迁移等功能。与阿里云生态深度整合，是国内企业图像生成的高性价比选择。',
+    category: 'image',
+    url: 'https://tongyi.aliyun.com/wanxiang',
+    tags: ['图像生成', '国产AI', '阿里云', '艺术'],
+    rating: 4.6,
+    commissionRate: 0.10,
+    pricing: '免费+订阅',
+    features: [
+      '文生图：输入文本生成图像',
+      '图像风格迁移',
+      '相似图像生成',
+      '阿里云账号直接使用',
+      '商用授权'
+    ],
+    pros: [
+      '中文 prompt 优化好',
+      '阿里云生态集成',
+      '商用授权清晰'
+    ],
+    cons: [
+      '艺术风格相对 Midjourney 有限',
+      '社区生态较小'
+    ],
+    targetAudience: '设计师、电商运营、企业用户',
+    affiliateUrl: 'https://tongyi.aliyun.com/wanxiang'
+  },
+
+  {
+    id: 'liblib',
+    name: 'LiblibAI',
+    description: 'LiblibAI（哩布）是中国领先的 AI 图像生成社区和模型分享平台，提供 Stable Diffusion WebUI 和大量本土化模型。创作者社区活跃，每周更新新模型，是国内 AI 艺术创作的首选平台。',
+    category: 'image',
+    url: 'https://www.liblibai.com',
+    tags: ['图像生成', 'SD', '社区', '国产AI'],
+    rating: 4.5,
+    commissionRate: 0.12,
+    pricing: '免费+订阅',
+    features: [
+      'Stable Diffusion WebUI 在线使用',
+      '大量本土化模型（萌妹、国风等）',
+      'LoRA、CKPT 模型分享',
+      'ControlNet 控制',
+      '创作者社区交流'
+    ],
+    pros: [
+      '本土化模型丰富',
+      '社区活跃，资源更新快',
+      '在线使用无需高端显卡'
+    ],
+    cons: [
+      '界面相对复杂',
+      '部分高级功能需要付费'
+    ],
+    targetAudience: 'AI 艺术创作者、二次元爱好者、设计师',
+    affiliateUrl: 'https://www.liblibai.com'
+  },
+
+  {
+    id: 'miaochuang',
+    name: '秒创',
+    description: '秒创是智谱推出的 AI 视频生成平台，支持图文转视频、数字人驱动等功能。依托智谱大模型技术，提供高质量视频生成服务，适合营销内容和教育视频制作。',
+    category: 'video',
+    url: 'https://mv.jinaai.cn',
+    tags: ['视频生成', '数字人', '国产AI', '智谱'],
+    rating: 4.4,
+    commissionRate: 0.10,
+    pricing: '免费+订阅',
+    features: [
+      '图文转视频',
+      '数字人播报',
+      'PPT 转视频',
+      '多种模板',
+      '背景音乐合成'
+    ],
+    pros: [
+      '智谱大模型技术支持',
+      '数字人效果逼真',
+      'PPT 转视频功能实用'
+    ],
+    cons: [
+      '视频长度有限',
+      '生成速度中等'
+    ],
+    targetAudience: '营销人员、教育工作者、自媒体',
+    affiliateUrl: 'https://mv.jinaai.cn'
+  },
+
+  {
+    id: 'xiezuocat',
+    name: '秘塔写作猫',
+    description: '秘塔写作猫是国产 AI 写作辅助工具，以出色的中文改写、纠错和润色能力著称。支持全文写作、英语写作助手、古文改写等功能，是写作者的好帮手。',
+    category: 'docs',
+    url: 'https://xiezuocat.com',
+    tags: ['写作', '国产AI', '改写', '纠错'],
+    rating: 4.5,
+    commissionRate: 0.15,
+    pricing: '免费+订阅',
+    features: [
+      'AI 全文写作',
+      '文本改写与润色',
+      '错别字、语病纠错',
+      '英语写作助手',
+      '古文改写现代文'
+    ],
+    pros: [
+      '中文改写能力出色',
+      '纠错准确率高',
+      '古文改写独特功能'
+    ],
+    cons: [
+      '创意写作能力有限',
+      '长文本处理慢'
+    ],
+    targetAudience: '写作者、编辑、学生、办公人员',
+    affiliateUrl: 'https://xiezuocat.com'
+  },
+
 ];
+
+export function getToolById
 
 // =====================
 // 辅助函数
