@@ -12,6 +12,8 @@ coverImage: "https://images.unsplash.com/photo-1536240478700-b869ad10e128?w=800&
 
 AI 视频生成正在彻底改变内容创作方式。本文精选 2026 年最值得使用的 10 款 AI 视频生成工具。
 
+![AI视频生成](https://images.unsplash.com/photo-1536240478700-b869ad10e128?w=800&q=80)
+
 ## Top 10 AI 视频生成工具
 
 ### 1. Sora ⭐ 4.8

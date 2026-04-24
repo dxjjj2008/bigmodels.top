@@ -12,6 +12,8 @@ coverImage: "https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&
 
 传统搜索正在被 AI 颠覆。本文精选 2026 年最值得使用的 AI 搜索工具。
 
+![AI搜索](https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=800&q=80)
+
 ## Top 10 AI 搜索工具
 
 ### 1. Perplexity ⭐ 4.7

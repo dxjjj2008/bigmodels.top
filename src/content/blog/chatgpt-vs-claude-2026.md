@@ -12,6 +12,8 @@ coverImage: "https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&
 
 作为全球最受欢迎的两款 AI 对话助手，ChatGPT 和 Claude 各自拥有大量用户。但它们之间的差异是什么？哪个更适合你的需求？
 
+![ChatGPT vs Claude](https://images.unsplash.com/photo-1677442136019-21780ecad995?w=800&q=80)
+
 ## 核心对比
 
 | 维度 | ChatGPT | Claude |

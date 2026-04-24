@@ -4,6 +4,29 @@ import { categories, tools } from '../data/tools';
 
 const toolCount = tools.length;
 const categoryCount = categories.length;
+const homeDescription = `精选 ${toolCount}+ AI 工具，覆盖大语言模型、AI编程、图像生成、视频生成、AI搜索与效率工具，提供评分、定价、优缺点、适用人群和工具对比。`;
+const homeKeywords = 'AI工具导航,AI工具评测,ChatGPT,Claude,Cursor,Midjourney,AI编程工具,AI图像生成,AI搜索';
+const homeJsonLd = [
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "name": "BigModels.top",
+    "url": "https://bigmodels.top",
+    "description": homeDescription,
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": "https://bigmodels.top/?q={search_term_string}",
+      "query-input": "required name=search_term_string"
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "BigModels.top",
+    "url": "https://bigmodels.top",
+    "description": "AI 工具导航与评测平台"
+  }
+];
 
 const pricingMap: Record<string, string> = {
   '免费': 'bg-green-100 text-green-700',
@@ -17,7 +40,8 @@ function getPricingClass(pricing: string) {
 }
 ---
 
-<Layout title="BigModels.top - AI 工具导航站">
+<Layout title="BigModels.top - 2026 AI工具导航与评测：ChatGPT、Claude、Cursor、Midjourney" description={homeDescription} keywords={homeKeywords}>
+  <script type="application/ld+json" set:html={JSON.stringify(homeJsonLd)} slot="head" />
   <!-- Hero Section -->
   <section class="text-center py-16">
     <h1 class="text-5xl font-bold text-gray-900 mb-4">

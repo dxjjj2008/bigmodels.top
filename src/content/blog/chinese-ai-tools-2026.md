@@ -12,6 +12,8 @@ coverImage: "https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&
 
 2026 年国产 AI 工具迎来爆发式增长。本文精选最值得关注的国产 AI 工具。
 
+![国产AI工具](https://images.unsplash.com/photo-1620712943543-bcc4688e7485?w=800&q=80)
+
 ## 🧠 大语言模型对话
 
 ### 1. Kimi（月之暗面）⭐ 4.7
